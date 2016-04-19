@@ -27,6 +27,16 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/button_create_test"
+        android:onClick="testCreate" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_take_test"
+        android:onClick="takeTest" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/button_schedule_test"
         android:onClick="scheduleTest" />
     <Button
@@ -37,10 +47,16 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/button_attend_interview"
+        android:onClick="attendInterview" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/button_schedule_interview"
         android:onClick="scheduleInterview" />
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent">
+    </FrameLayout>
 </LinearLayout>

@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -27,6 +28,9 @@ public class LoginScreenActivity extends Activity {
     public final static String SELECTED_OPTION = "selected_option";
 
     public static String response = "";
+    public static String csrftoken = "";
+    //public static String cookiestr = "";
+    static final String COOKIES_HEADER = "Set-Cookie";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,13 +89,17 @@ public class LoginScreenActivity extends Activity {
         }
         Pattern errorPattern = Pattern.compile("^Error:");
         Pattern sesscodePattern = Pattern.compile("sesscode=\\w+");
+        String usertype = "";
         boolean m = errorPattern.matcher(response).matches();
         boolean s = sesscodePattern.matcher(response).matches();
         if (!m && response != "") {
-            String[] respparts = response.split("=");
-            if (respparts[0].equals("sesscode")) {
-                sessioncode = respparts[1];
+            String[] respparts = response.split("&");
+            String[] sesscodekeyvals = respparts[0].split("=");
+            if (sesscodekeyvals[0].equals("sesscode")) {
+                sessioncode = sesscodekeyvals[1];
             }
+            String[] usertypekeyvals = respparts[1].split("=");
+            usertype = usertypekeyvals[1];
         }
         else if(s) {
             String[] respparts = response.split("sesscode=");
@@ -106,9 +114,14 @@ public class LoginScreenActivity extends Activity {
             // Set the shared preference value for session_id
             SharedPreferences apppref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
             SharedPreferences.Editor editor = apppref.edit();
-            editor.putString("session_id", sessioncode);
-            //Log.d("SESSION CODE IN IF: ", sessioncode);
-            //Log.d("SELECTED OPT IN IF: ", String.valueOf(selected_option));
+            editor.putString("session_id", sessioncode).commit();
+            editor.putString("username", uname).commit();
+            editor.putString("usertype", usertype).commit();
+            // *****NOTE: Need to get usertype too.
+
+            //SharedPreferences cookiepref = getApplicationContext().getSharedPreferences("CookiePref", 0); // 0 - for private mode
+            //SharedPreferences.Editor editor2 = cookiepref.edit();
+            //editor2.putString("cookieheader", cookiestr).commit();
             if(selected_option == 1) {
                 intent = new Intent(this, ListTestsAndInterviewsActivity.class);
             }
@@ -121,6 +134,15 @@ public class LoginScreenActivity extends Activity {
             else if(selected_option == 4) {
                 intent = new Intent(this, ScheduleInterviewActivity.class);
             }
+            else if(selected_option == 5) {
+                intent = new Intent(this, TestCreationActivity.class);
+            }
+            else if(selected_option == 6) {
+                intent = new Intent(this, TakeTestActivity.class);
+            }
+            else if(selected_option == 7) {
+                intent = new Intent(this, AttendInterviewActivity.class);
+            }
         }
         finish();
         startActivity(intent);
@@ -129,6 +151,7 @@ public class LoginScreenActivity extends Activity {
 
     public String  sendPostRequest(String requestURL, HashMap<String, String> postDataParams) {
         URL url;
+        //String csrftoken = "";
         try {
             url = new URL(requestURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -137,13 +160,17 @@ public class LoginScreenActivity extends Activity {
             conn.setRequestProperty("Accept", "*/*");
             conn.setDoOutput(true);
             conn.setDoInput(true);
+            //conn.connect();
             String postDataParamsString = getPostDataString(postDataParams);
             String keystring = "test";
             String ivstring = "test";
             String postDataParamsStringEncoded = base64Encode(postDataParamsString);
             String postDataParamsStringEncrypted = des3Encrypt(postDataParamsStringEncoded, keystring, ivstring);
-            postDataParamsStringEncrypted = "data=" + postDataParamsStringEncrypted;
-            OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
+            String data = "data=";
+            //postDataParamsStringEncrypted = data.concat(postDataParamsStringEncrypted);
+            postDataParamsStringEncrypted = data + postDataParamsStringEncrypted;
+            OutputStream os = conn.getOutputStream();
+            OutputStreamWriter writer = new OutputStreamWriter(os);
             writer.write(postDataParamsStringEncrypted);
             writer.flush();
             writer.close();
@@ -154,10 +181,26 @@ public class LoginScreenActivity extends Activity {
                 while ((line=br.readLine()) != null){
                     response+=line;
                 }
+                String cookie_recvd = conn.getHeaderField("Set-Cookie");
+                String [] cookieslist = cookie_recvd.split(";");
+                String [] cookieparts = cookieslist[0].split("=");
+                String usertype = cookieparts[1];
+                response += "&usertype=" + usertype;
+                //Log.d("COOKIE RECVD========= ", cookie_recvd);
             }
             else {
                 response="";
             }
+            //java.net.CookieManager msCookieManager = new java.net.CookieManager();
+            //Map<String, List<String>> headerFields = conn.getHeaderFields();
+            //List<String> cookiesHeader = headerFields.get(COOKIES_HEADER);
+            //if(cookiesHeader != null){
+            //    for (String cookie : cookiesHeader) {
+            //        msCookieManager.getCookieStore().add(null, HttpCookie.parse(cookie).get(0));
+            //    }
+            //}
+            //String cookiestr = TextUtils.join(";", msCookieManager.getCookieStore().getCookies());
+            //Log.d("COOKIE STR ====== : ", cookiestr);
         }
         catch (Exception e) {
             e.printStackTrace();
