@@ -2,9 +2,11 @@ package xpresstech.testyard;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -92,7 +94,8 @@ public class ListTestsAndInterviewsActivity extends ListActivity {
             List asEvaluatorList = new ArrayList();
             List asInterviewCandidateList = new ArrayList();
             List asInterviewerList = new ArrayList();
-
+            String asCandidateListStr = "\n\nAs Candidate:\n\n";
+            List allNodes = new ArrayList();
             for(int i=0;i < candidatekeys.length(); i++){
                 String testname = candidatekeys.getString(i);
                 JSONArray attribs = asCandidate.getJSONArray(testname);
@@ -101,54 +104,83 @@ public class ListTestsAndInterviewsActivity extends ListActivity {
                 String testdate = attribs.getString(2);
                 String testtopic = attribs.getString(3);
                 HashMap map = new HashMap();
-                map.put("testname", testname);
-                map.put("testscore", testscore);
-                map.put("outcome", outcome);
-                map.put("testdate", testdate);
-                map.put("testtopic", testtopic);
+                map.put(0, testname);
+                map.put(1, testscore);
+                map.put(2, outcome);
+                map.put(3, testdate);
+                map.put(4, testtopic);
                 asCandidateList.add(map);
+                asCandidateListStr += "Test Name: " + testname + "\n";
+                asCandidateListStr += "Test Score: " + testscore + "\n";
+                asCandidateListStr += "Outcome: " + outcome + "\n";
+                asCandidateListStr += "Test Date: " + testdate + "\n";
+                asCandidateListStr += "Test Topic: " + testtopic + "\n";
+                asCandidateListStr += "\n\n";
             }
+            allNodes.add(asCandidateListStr);
+            String asCreatorListStr = "\n\nAs Creator:\n\n";
             for(int i=0;i < creatorkeys.length(); i++){
                 String testname = creatorkeys.getString(i);
                 JSONArray attribs = asCreator.getJSONArray(testname);
                 String testtakerscount = attribs.getString(0);
                 String testtopic = attribs.getString(1);
                 HashMap map = new HashMap();
-                map.put("testname", testname);
-                map.put("testtakerscount", testtakerscount);
-                map.put("testtopic", testtopic);
+                map.put(0, testname);
+                map.put(1, testtakerscount);
+                map.put(2, testtopic);
                 asCreatorList.add(map);
+                asCreatorListStr += "Test Name: " + testname + "\n";
+                asCreatorListStr += "Test Takers Count: " + testtakerscount + "\n";
+                asCreatorListStr += "Test Topic: " + testtopic + "\n";
+                asCreatorListStr += "\n\n";
             }
+            allNodes.add(asCreatorListStr);
+            String asEvaluatorListStr = "\n\nAs Evaluator: \n\n";
             for(int i=0;i < evaluatorkeys.length(); i++){
                 String testname = evaluatorkeys.getString(i);
                 JSONArray attribs = asEvaluator.getJSONArray(testname);
                 String testtopic = attribs.getString(0);
                 HashMap map = new HashMap();
-                map.put("testname", testname);
-                map.put("testtopic", testtopic);
+                map.put(0, testname);
+                map.put(1, testtopic);
                 asEvaluatorList.add(map);
+                asEvaluatorListStr += "Test Name: " + testname + "\n";
+                asEvaluatorListStr += "Test Topic: " + testtopic + "\n";
+                asEvaluatorListStr += "\n\n";
             }
+            allNodes.add(asEvaluatorListStr);
+            String asInterviewCandidateListStr = "\n\nAs Interview Candidate: \n\n";
             for(int i=0;i < interviewcandidatekeys.length(); i++){
                 String interviewname = interviewcandidatekeys.getString(i);
                 JSONArray attribs = asInterviewCandidates.getJSONArray(interviewname);
                 String interviewtopic = attribs.getString(0);
                 HashMap map = new HashMap();
-                map.put("interviewname", interviewname);
-                map.put("interviewtopic", interviewtopic);
+                map.put(0, interviewname);
+                map.put(1, interviewtopic);
                 asInterviewCandidateList.add(map);
+                asInterviewCandidateListStr += "Interview Name: " + interviewname + "\n";
+                asInterviewCandidateListStr += "Interview Topic: " + interviewtopic + "\n";
+                asInterviewCandidateListStr += "\n\n";
             }
+            allNodes.add(asInterviewCandidateListStr);
+            String asInterviewerListStr = "\n\nAs Interviewer: \n\n";
             for(int i=0;i < interviewerkeys.length(); i++){
                 String interviewname = interviewerkeys.getString(i);
                 JSONArray attribs = asInterviewer.getJSONArray(interviewname);
                 String interviewtopic = attribs.getString(0);
                 HashMap map = new HashMap();
-                map.put("interviewname", interviewname);
-                map.put("interviewtopic", interviewtopic);
+                map.put(0, interviewname);
+                map.put(1, interviewtopic);
                 asInterviewerList.add(map);
+                asInterviewerListStr += "Interview Name: " + interviewname + "\n";
+                asInterviewerListStr += "Interview Topic: " + interviewtopic + "\n";
+                asInterviewerListStr += "\n\n";
             }
+            allNodes.add(asInterviewerListStr);
             setContentView(R.layout.activity_list_tests_and_interviews);
             ListView mainlistview =  (ListView) findViewById(android.R.id.list);
-            ArrayAdapter<String> listadapter = new ArrayAdapter<String>(ListTestsAndInterviewsActivity.this, R.layout.content_list_tests_and_interviews, new String[]{"testname", "testscore", "outcome", "testdate", "testtopic"});
+            HashMap hashobj = (HashMap)asCandidateList.get(0);
+            ArrayAdapter<String> listadapter = new ArrayAdapter<String>(ListTestsAndInterviewsActivity.this, R.layout.content_list_tests_and_interviews, new String[]{(String)allNodes.get(0), (String)allNodes.get(1) , (String)allNodes.get(2), (String)allNodes.get(3), (String)allNodes.get(4)});
             //SimpleAdapter tcadapter = new SimpleAdapter(ListTestsAndInterviewsActivity.this, asCandidateList, R.layout.content_list_tests_and_interviews, new String[]{"testname", "testscore", "outcome", "testdate", "testtopic"}, new int[]{R.id.testname, R.id.testscore, R.id.outcome, R.id.testdate, R.id.testtopic});
             mainlistview.setAdapter(listadapter);
         }
@@ -162,15 +194,10 @@ public class ListTestsAndInterviewsActivity extends ListActivity {
         // We are in this activity only if the user is in logged in state
         //HashMap<String, String> user = new HashMap<String, String>();
         SharedPreferences pref;
-        //SharedPreferences cookiepref;
         pref = getApplicationContext().getSharedPreferences("MyPref", 0);
-        //cookiepref = getApplicationContext().getSharedPreferences("CookiePref", 0);
         String username = pref.getString("username", "");
         String sessionid = pref.getString("session_id", "");
         String usertype = pref.getString("usertype", "");
-        //String cookiestr = cookiepref.getString("cookieheader", "");
-        //String csrftoken = "Oby7PxZxKOaJJdMNlGmd1GSDpJwx4Rja";
-        // Create a POST request to the server with the username and sessionid values
         try {
             URL url;
             final String listTestsInterviewsUrl = getString(R.string.list_tests_interviews_url);
@@ -227,5 +254,16 @@ public class ListTestsAndInterviewsActivity extends ListActivity {
             result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
         }
         return (result.toString());
+    }
+
+    public void backToMainMenu(View view){
+        SharedPreferences apppref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        String sessionId = apppref.getString("session_id", "");
+        Intent intent = new Intent(this, MainActivity.class);
+        if(sessionId == "") {
+            intent = new Intent(this, LoginScreenActivity.class);
+        }
+        finish();
+        startActivity(intent);
     }
 }
