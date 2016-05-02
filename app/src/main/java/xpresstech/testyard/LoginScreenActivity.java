@@ -191,16 +191,7 @@ public class LoginScreenActivity extends Activity {
             else {
                 response="";
             }
-            //java.net.CookieManager msCookieManager = new java.net.CookieManager();
-            //Map<String, List<String>> headerFields = conn.getHeaderFields();
-            //List<String> cookiesHeader = headerFields.get(COOKIES_HEADER);
-            //if(cookiesHeader != null){
-            //    for (String cookie : cookiesHeader) {
-            //        msCookieManager.getCookieStore().add(null, HttpCookie.parse(cookie).get(0));
-            //    }
-            //}
-            //String cookiestr = TextUtils.join(";", msCookieManager.getCookieStore().getCookies());
-            //Log.d("COOKIE STR ====== : ", cookiestr);
+
         }
         catch (Exception e) {
             e.printStackTrace();

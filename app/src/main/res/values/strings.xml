@@ -7,17 +7,53 @@
     <string name="appbar_scrolling_view_behavior"></string>
     <string name="layout_behavior"></string>
     <string name="button_list">List my Tests and Interviews</string>
+    <string name="button_create_test">Create a Test</string>
     <string name="button_schedule_test">Schedule a Test</string>
+    <string name="button_take_test">Take a Test</string>
+    <string name="button_attend_interview">Attend an Interview</string>
     <string name="button_conduct_interview">Conduct an Interview</string>
     <string name="button_schedule_interview">Schedule an Interview</string>
+    <string name="button_back">Back To Main Menu</string>
     <string name="title_activity_login_screen">LoginScreen</string>
+    <string name="title_activity_test_creation">TestCreationActivity</string>
+    <string name="title_activity_take_test">TakeTestActivity</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="verifyurl">http://192.168.1.4:8080/skillstest/mobile/verifycreds/</string>
     <string name="do_login">Login</string>
     <string name="title_activity_list_tests_and_interviews">ListTestsAndInterviewsActivity</string>
     <string name="title_activity_create_test">CreateTestActivity</string>
     <string name="title_activity_conduct_interview">ConductInterviewActivity</string>
+    <string name="title_activity_attend_interview">AttendInterviewActivity</string>
     <string name="title_activity_schedule_interview">ScheduleInterviewActivity</string>
+    <string name="verifyurl">http://192.168.1.4:8080/skillstest/mobile/verifycreds/</string>
+    <string name="list_tests_interviews_url">http://192.168.1.4:8080/skillstest/mobile/listtestsinterviews/</string>
+    <string name="test_creation_url">http://192.168.1.4:8080/skillstest/mobile/tests/create/</string>
+    <string name="upload_server_url">http://192.168.1.4:8080/skillstest/mobile/tests/uploadfile/</string>
+    <string name="add_challenge_url">http://192.168.1.4:8080/skillstest/mobile/tests/addchallenge/</string>
+    <string name="allow_multimedia">Allow Multimedia in Challenge Statements</string>
+    <string name="random_sequenced">Challenges Should be Randomly Sequenced</string>
+    <string name="multiple_attempts">Allow Multiple Attempts By Candidates</string>
+    <string name="create_test">Create Test</string>
+    <string name="close_app">Close Application</string>
+    <string name="add_challenges">Add Challenges</string>
+    <string name="challenge_note">Note: To write a mathematical formula with special characters such as α or β, please open the following link in another browser
+window: http://math.typeit.org/ . Write the formula in the editable text area on that page and copy / paste it here on the above text area.</string>
+    <string name="upload_media_file">Upload Media File:</string>
+    <string name="ext_resource_text">External resource URL (if any) referred by this challenge/question:</string>
+    <string name="response_lines_text">Maximum Number of Lines in Response:</string>
+    <string name="challenge_score">*Score for this Challenge/Question:</string>
+    <string name="negative_score_text">Enter score to deduct on errant response:</string>
+    <string name="compulsory_challenge_text">Is it compulsory for the candidate to respond?</string>
+    <string name="max_time_limit">Maximum Time Limit (in seconds)</string>
+    <string name="challenge_quality_text">Quality of the Challenge:</string>
+    <string name="save_add_challenge">Save and Add Challenge</string>
+    <string name="save_close_button">Save and Close</string>
+    <string name="close_button">Close</string>
+    <string name="title_activity_challenge_creation">ChallengeCreationActivity</string>
+    <string-array name="challenge_qualities">
+        <item>Beginner</item>
+        <item>Intermediate</item>
+        <item>Professional</item>
+    </string-array>
 </resources>
 
