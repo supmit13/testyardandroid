@@ -15,6 +15,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -80,6 +82,7 @@ public class TestCreationActivity extends AppCompatActivity {
     public String onMultiAttemptsClicked(){
         return("");
     }
+
 
     public void createTest(View view){
         SharedPreferences pref;
@@ -210,14 +213,30 @@ public class TestCreationActivity extends AppCompatActivity {
         catch (Exception e) {
             e.printStackTrace();
         }
+        String message = "";
+        String testlinkid = "";
+        try {
+            JSONObject jsonObj = new JSONObject(response); // Handle session expiry here
+            message = jsonObj.getString("message");
+            testlinkid = jsonObj.getString("testlinkid");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
         Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
         Pattern p = Pattern.compile("Test\\s+object\\s+created\\s+successfully");
-        Matcher m = p.matcher(response);
+        Matcher m = p.matcher(message);
         if(m.matches()) {
             Button btncreatetest = (Button) findViewById(R.id.createtest);
             btncreatetest.setEnabled(false);
             Button btnaddchallenges = (Button) findViewById(R.id.addchallenges);
             btnaddchallenges.setEnabled(true);
+            SharedPreferences apppref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+            SharedPreferences.Editor editor = apppref.edit();
+            editor.putString("testname", testname).commit();
+            editor.putString("testtypeselected", testtypeselected).commit();
+            editor.putString("negativescorevalue", negativescorevalue).commit();
+            editor.putString("testlinkid", testlinkid).commit();
         }
     }
 
@@ -323,7 +342,10 @@ public class TestCreationActivity extends AppCompatActivity {
     }
 
     public void addChallenges(View view){
-        setContentView(R.layout.content_challenge_creation);
+        finish();
+        Intent intent = new Intent(this, ChallengeCreationActivity.class);
+        startActivity(intent);
+        //setContentView(R.layout.content_challenge_creation);
     }
 
 }

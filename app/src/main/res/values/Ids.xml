@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="max_text_id" />
+    <item type="id" name="max_count_id" />
+
+    <item type="id" name="oneormore_yes" />
+    <item type="id" name="oneormore_no" />
+    <item type="id" name="oneormore" />
+
+    <item type="id" name="multiple_chc_text" />
+    <item type="id" name="filb_correct_resp_id" />
+    <item type="id" name="filb_correct_resp_field_id" />
+</resources>
+
