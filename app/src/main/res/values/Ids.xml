@@ -10,5 +10,17 @@
     <item type="id" name="multiple_chc_text" />
     <item type="id" name="filb_correct_resp_id" />
     <item type="id" name="filb_correct_resp_field_id" />
+
+    <item type="id" name="response_lines_count" />
+    <item type="id" name="challenge_type" />
+
+    <item type="id" name="option_1" />
+    <item type="id" name="option_2" />
+    <item type="id" name="option_3" />
+    <item type="id" name="option_4" />
+    <item type="id" name="option_5" />
+    <item type="id" name="option_6" />
+    <item type="id" name="option_7" />
+    <item type="id" name="option_8" />
 </resources>
 

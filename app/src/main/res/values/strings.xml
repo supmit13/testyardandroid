@@ -36,8 +36,7 @@
     <string name="create_test">Create Test</string>
     <string name="close_app">Close Application</string>
     <string name="add_challenges">Add Challenges</string>
-    <string name="challenge_note">Note: To write a mathematical formula with special characters such as α or β, please open the following link in another browser
-window: http://math.typeit.org/ . Write the formula in the editable text area on that page and copy / paste it here on the above text area.</string>
+    <string name="challenge_note">Note: To write a mathematical formula with special characters such as α or β, please open the following link in another browser window: http://math.typeit.org/ . Write the formula in the editable text area on that page and copy / paste it here on the above text area.</string>
     <string name="upload_media_file">Upload Media File:</string>
     <string name="ext_resource_text">External resource URL (if any) referred by this challenge/question:</string>
     <string name="response_lines_text">Maximum Number of Lines in Response:</string>

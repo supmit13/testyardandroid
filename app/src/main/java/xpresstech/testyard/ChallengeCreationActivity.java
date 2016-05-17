@@ -1,6 +1,5 @@
 package xpresstech.testyard;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -42,10 +41,7 @@ public class ChallengeCreationActivity extends AppCompatActivity {
     TextView messageText;
     Button uploadButton;
     int serverResponseCode = 0;
-    ProgressDialog dialog = null;
-
     String upLoadServerUri = null;
-
     final String uploadFilePath = "/mnt/sdcard/";
 
     String response;
@@ -100,6 +96,7 @@ public class ChallengeCreationActivity extends AppCompatActivity {
             challengetypeoptions.add("Multiple Choice");
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, challengetypeoptions);
             challenge_types.setAdapter(dataAdapter);
+            challenge_types.setId(R.id.challenge_type);
             final android.content.Context cxt = this;
             //challenge_types.
             runtime_widgets_layout.addView(challenge_types);
@@ -297,8 +294,31 @@ public class ChallengeCreationActivity extends AppCompatActivity {
                             final EditText [] options = new EditText[8];
                             for(int i=0; i < 8; i++){
                                 options[i] = new EditText(cxt);
-                                options[i].setText("Option " + (i + 1) + ") ");
-                                options[i].setId(i+100);
+                                options[i].setHint("Option #" + (i + 1) + ") ");
+                                if(i == 0) {
+                                    options[i].setId(R.id.option_1);
+                                }
+                                else if(i == 1){
+                                    options[i].setId(R.id.option_2);
+                                }
+                                else if(i == 2){
+                                    options[i].setId(R.id.option_3);
+                                }
+                                else if(i == 3){
+                                    options[i].setId(R.id.option_4);
+                                }
+                                else if(i == 4){
+                                    options[i].setId(R.id.option_5);
+                                }
+                                else if(i == 5){
+                                    options[i].setId(R.id.option_6);
+                                }
+                                else if(i == 6){
+                                    options[i].setId(R.id.option_7);
+                                }
+                                else if(i == 7){
+                                    options[i].setId(R.id.option_8);
+                                }
                                 runtime_widgets_layout_inner.addView(options[i]);
                             }
                         }
@@ -406,7 +426,7 @@ public class ChallengeCreationActivity extends AppCompatActivity {
                         }
                     }
                     else{
-                        Log.d("ERROR: Unsupported Challenge Type provided. Not performing any action.", "Error in challenge type");
+                        Log.d("ERROR: ", "Unsupported Challenge Type");
                     }
                 }
 
@@ -439,7 +459,35 @@ public class ChallengeCreationActivity extends AppCompatActivity {
             for(int ctr=0; ctr < max_choices_count; ctr++){
                 choice_statements[ctr] = new EditText(this);
                 runtime_widgets_layout.addView(choice_statements[ctr]);
-                choice_statements[ctr].setText("Option #" + ctr);
+                //choice_statements[ctr].setText("Option #" + (ctr + 1));
+                choice_statements[ctr].setHint("Option #" + (ctr + 1));
+                if(ctr == 0) {
+                    choice_statements[ctr].setId(R.id.option_1);
+                }
+                else if(ctr == 1){
+                    choice_statements[ctr].setId(R.id.option_2);
+                }
+                else if(ctr == 2){
+                    choice_statements[ctr].setId(R.id.option_3);
+                }
+                else if(ctr == 3){
+                    choice_statements[ctr].setId(R.id.option_4);
+                }
+                else if(ctr == 4){
+                    choice_statements[ctr].setId(R.id.option_5);
+                }
+                else if(ctr == 5){
+                    choice_statements[ctr].setId(R.id.option_6);
+                }
+                else if(ctr == 6){
+                    choice_statements[ctr].setId(R.id.option_7);
+                }
+                else if(ctr == 7){
+                    choice_statements[ctr].setId(R.id.option_8);
+                }
+                else{
+                    // This is past our expectations right now
+                }
             }
         }
         else if(testtypeselected == "Fill up the Blanks"){
@@ -449,6 +497,7 @@ public class ChallengeCreationActivity extends AppCompatActivity {
             runtime_widgets_layout.addView(fitb_text);
             fitb_editbox = new EditText(this);
             fitb_editbox.setHint("Enter missing value here");
+            fitb_editbox.setId(R.id.filb_correct_resp_field_id);
             runtime_widgets_layout.addView(fitb_editbox);
         }
     }
@@ -465,6 +514,19 @@ public class ChallengeCreationActivity extends AppCompatActivity {
         String negativescorevalue = pref.getString("negativescorevalue", "");
         String testlinkid = pref.getString("testlinkid", "");
 
+        String filbresponsestr = "";
+        String challengeType = "";
+        String oneormorevalue = "";
+
+        String opt_1_val = "";
+        String opt_2_val = "";
+        String opt_3_val = "";
+        String opt_4_val = "";
+        String opt_5_val = "";
+        String opt_6_val = "";
+        String opt_7_val = "";
+        String opt_8_val = "";
+
         final String uploadFileName = "challenge_" + username + "_" + sessionid; // File extension needs to be extracted from the real filename later.
 
         EditText challenge_statement   = (EditText)findViewById(R.id.challenge_statement);
@@ -473,8 +535,75 @@ public class ChallengeCreationActivity extends AppCompatActivity {
         EditText external_resource_url = (EditText)findViewById(R.id.external_resource_url);
         String externalResourceUrl = external_resource_url.getText().toString();
 
-        //EditText response_lines_count = (EditText)findViewById(R.id.response_lines_count);
-        //String responseLinesCount = response_lines_count.getText().toString();
+        String responseLinesCount = "";
+        if(testtypeselected == "Coding" || testtypeselected == "Algorithm" || testtypeselected == "Subjective"){
+            EditText response_lines_count = (EditText)findViewById(R.id.response_lines_count);
+            responseLinesCount = response_lines_count.getText().toString();
+            challengeType = testtypeselected;
+        }
+        else if(testtypeselected == "Fill up the Blanks"){
+            EditText filbresponse = (EditText)findViewById(R.id.filb_correct_resp_field_id);
+            filbresponsestr = filbresponse.getText().toString();
+            challengeType = testtypeselected;
+        }
+        else if(testtypeselected == "Multiple Choice"){
+            RadioGroup oneormoregrp = (RadioGroup) findViewById(R.id.oneormore);
+            int selectedId1 = oneormoregrp.getCheckedRadioButtonId();
+            RadioButton rdbtn1 = (RadioButton) findViewById(selectedId1);
+            oneormorevalue = (String) rdbtn1.getText();
+            challengeType = testtypeselected;
+
+            EditText option01 = (EditText)findViewById(R.id.option_1);
+            opt_1_val = option01.getText().toString();
+            EditText option02 = (EditText)findViewById(R.id.option_2);
+            opt_2_val = option02.getText().toString();
+            EditText option03 = (EditText)findViewById(R.id.option_3);
+            opt_3_val = option03.getText().toString();
+            EditText option04 = (EditText)findViewById(R.id.option_4);
+            opt_4_val = option04.getText().toString();
+            EditText option05 = (EditText)findViewById(R.id.option_5);
+            opt_5_val = option05.getText().toString();
+            EditText option06 = (EditText)findViewById(R.id.option_6);
+            opt_6_val = option06.getText().toString();
+            EditText option07 = (EditText)findViewById(R.id.option_7);
+            opt_7_val = option07.getText().toString();
+            EditText option08 = (EditText)findViewById(R.id.option_8);
+            opt_8_val = option08.getText().toString();
+        }
+        else if(testtypeselected == "Composite"){
+            Spinner challenge_type = (Spinner)findViewById(R.id.challenge_type);
+            challengeType = challenge_type.getSelectedItem().toString();
+            if(challengeType == "Coding" || challengeType == "Subjective" || challengeType == "Algorithm"){
+                EditText response_lines_count = (EditText)findViewById(R.id.response_lines_count);
+                responseLinesCount = response_lines_count.getText().toString();
+            }
+            else if(challengeType == "Fill up the Blanks"){
+                EditText filbresponse = (EditText)findViewById(R.id.filb_correct_resp_field_id);
+                filbresponsestr = filbresponse.getText().toString();
+            }
+            else if(challengeType == "Multiple Choice"){
+                RadioGroup oneormoregrp = (RadioGroup) findViewById(R.id.oneormore);
+                int selectedId1 = oneormoregrp.getCheckedRadioButtonId();
+                RadioButton rdbtn1 = (RadioButton) findViewById(selectedId1);
+                oneormorevalue = (String) rdbtn1.getText();
+                EditText option01 = (EditText)findViewById(R.id.option_1);
+                opt_1_val = option01.getText().toString();
+                EditText option02 = (EditText)findViewById(R.id.option_2);
+                opt_2_val = option02.getText().toString();
+                EditText option03 = (EditText)findViewById(R.id.option_3);
+                opt_3_val = option03.getText().toString();
+                EditText option04 = (EditText)findViewById(R.id.option_4);
+                opt_4_val = option04.getText().toString();
+                EditText option05 = (EditText)findViewById(R.id.option_5);
+                opt_5_val = option05.getText().toString();
+                EditText option06 = (EditText)findViewById(R.id.option_6);
+                opt_6_val = option06.getText().toString();
+                EditText option07 = (EditText)findViewById(R.id.option_7);
+                opt_7_val = option07.getText().toString();
+                EditText option08 = (EditText)findViewById(R.id.option_8);
+                opt_8_val = option08.getText().toString();
+            }
+        }
 
         EditText challenge_score = (EditText)findViewById(R.id.challenge_score);
         String challengeScore = challenge_score.getText().toString();
@@ -530,17 +659,31 @@ public class ChallengeCreationActivity extends AppCompatActivity {
         postDataParams.put("testname", testName);
         postDataParams.put("testlinkid", testlinkid);
         postDataParams.put("testtypeselected", testtypeselected);
+        postDataParams.put("challengeType", challengeType);
+        postDataParams.put("maxResponseLinesCount", responseLinesCount);
+        postDataParams.put("filbResponseStr", filbresponsestr);
+        postDataParams.put("oneOrMoreValues", oneormorevalue);
+        ;
+        postDataParams.put("option1Value", opt_1_val);
+        postDataParams.put("option2Value", opt_2_val);
+        postDataParams.put("option3Value", opt_3_val);
+        postDataParams.put("option4Value", opt_4_val);
+        postDataParams.put("option5Value", opt_5_val);
+        postDataParams.put("option6Value", opt_6_val);
+        postDataParams.put("option7Value", opt_7_val);
+        postDataParams.put("option8Value", opt_8_val);
+
         cookiestr = "sessioncode=" + sessionid + "; usertype=" + usertype + "; csrftoken=";
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run() {
-                try {
-                    String addChallengeUrl = getString(R.string.add_challenge_url);
-                    response = sendPostRequest(addChallengeUrl, postDataParams);
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
+            try {
+                String addChallengeUrl = getString(R.string.add_challenge_url);
+                response = sendPostRequest(addChallengeUrl, postDataParams);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
             }
         });
         thread.start();
