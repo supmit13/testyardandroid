@@ -200,25 +200,45 @@
         android:layout_height="wrap_content"
         android:text="Test Publish Date:"
         android:id="@+id/captionTestPublishDate" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
     <EditText
         android:id="@+id/testPublishDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="yyyy-mm-dd" >
     </EditText>
-
+    <ImageButton
+        android:id="@+id/imageButtonPublish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/publish_button" />
+    </LinearLayout>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Test Activation Date:"
         android:id="@+id/captionTestActivationDate" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
     <EditText
         android:id="@+id/testActivationDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="yyyy-mm-dd" >
     </EditText>
-
+    <ImageButton
+        android:id="@+id/imageButtonActivate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/activate_button" />
+    </LinearLayout>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

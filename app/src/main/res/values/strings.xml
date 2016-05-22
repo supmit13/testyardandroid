@@ -45,7 +45,7 @@
     <string name="compulsory_challenge_text">Is it compulsory for the candidate to respond?</string>
     <string name="max_time_limit">Maximum Time Limit (in seconds)</string>
     <string name="challenge_quality_text">Quality of the Challenge:</string>
-    <string name="save_add_challenge">Save and Add Challenge</string>
+    <string name="save_add_challenge">Save &amp; Add More</string>
     <string name="save_close_button">Save and Close</string>
     <string name="close_button">Close</string>
     <string name="title_activity_challenge_creation">ChallengeCreationActivity</string>

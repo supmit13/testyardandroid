@@ -74,6 +74,14 @@ public class ChallengeCreationActivity extends AppCompatActivity {
         String testtypeselected = pref.getString("testtypeselected", "");
         String negativescorevalue = pref.getString("negativescorevalue", "");
         LinearLayout runtime_widgets_layout = (LinearLayout) findViewById(R.id.runtime_widgets_layout);
+        if(negativescorevalue.equals("No")){
+            EditText negscorefield = (EditText)findViewById(R.id.negative_score);
+            TextView negscoretext = (TextView)findViewById(R.id.negativeScoreText);
+            if(negscorefield != null){
+                ((ViewManager)negscorefield.getParent()).removeView(negscorefield);
+                ((ViewManager)negscoretext.getParent()).removeView(negscoretext);
+            }
+        }
         if(testtypeselected == "Coding" || testtypeselected == "Algorithm" || testtypeselected == "Subjective"){
             max_lines_text = new TextView(this);
             max_lines_count = new EditText(this);

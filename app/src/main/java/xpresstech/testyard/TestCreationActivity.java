@@ -1,21 +1,27 @@
 package xpresstech.testyard;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.util.Base64;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.json.JSONObject;
+import com.dialog.DatePickerFragment;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -25,6 +31,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -32,15 +39,64 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class TestCreationActivity extends AppCompatActivity {
+public class TestCreationActivity extends FragmentActivity {
     public final static String SELECTED_OPTION = "selected_option";
     String response;
     String cookiestr;
+
+    private ImageButton imageButtonPublish;
+    private ImageButton imageButtonActivate;
+
+    private EditText publishDate;
+    private EditText activateDate;
+
+    static final int DATE_PICKER_ID = 2222;
+    private int yyyy;
+    private int mm;
+    private int dd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_test_creation);
+
+        publishDate = (EditText)findViewById(R.id.testPublishDate);
+        activateDate = (EditText)findViewById(R.id.testActivationDate);
+
+        imageButtonPublish = (ImageButton)findViewById(R.id.imageButtonPublish);
+        imageButtonActivate = (ImageButton)findViewById(R.id.imageButtonActivate);
+
+        final Calendar c = Calendar.getInstance();
+        yyyy  = c.get(Calendar.YEAR);
+        mm = c.get(Calendar.MONTH) + 1;
+        String mmstr = Integer.toString(mm);
+        if(mmstr.length() < 2){
+            mmstr = "0" + mmstr;
+        }
+        dd   = c.get(Calendar.DAY_OF_MONTH);
+        String ddstr = Integer.toString(dd);
+        if(ddstr.length() < 2){
+            ddstr = "0" + ddstr;
+        }
+
+        publishDate.setText(new StringBuilder().append(yyyy).append("-").append(mmstr).append("-").append(ddstr));
+        activateDate.setText(new StringBuilder().append(yyyy).append("-").append(mmstr).append("-").append(ddstr));
+
+        imageButtonPublish.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // On button click show datepicker dialog
+                showDatePicker();
+            }
+        });
+
+        imageButtonActivate.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // On button click show datepicker dialog
+                showDatePicker();
+            }
+        });
 
         Spinner dropdowntypes = (Spinner)findViewById(R.id.testtypes);
         String[] itemstypes = new String[]{"Coding", "Composite", "Fill up the Blanks", "Algorithm", "Subjective", "Multiple Choice"};
@@ -77,6 +133,38 @@ public class TestCreationActivity extends AppCompatActivity {
         ArrayAdapter<String> adapterprogenv = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, programmingenv);
         dropdownprogenv.setAdapter(adapterprogenv);
     }
+
+    private void showDatePicker() {
+        DatePickerFragment date = new DatePickerFragment();
+
+        date.setCallBack(ondate);
+        date.show(getSupportFragmentManager(), "Date Picker");
+    }
+
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case DATE_PICKER_ID:
+                // open datepicker dialog.
+                // set date picker for current date
+                // add pickerListener listner to date picker
+                return new DatePickerDialog(this, pickerListener, yyyy, mm, dd);
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener pickerListener = new DatePickerDialog.OnDateSetListener() {
+        // when dialog box is closed, below method will be called.
+        @Override
+        public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
+            yyyy  = selectedYear;
+            mm = selectedMonth;
+            dd   = selectedDay;
+            publishDate.setText(new StringBuilder().append(yyyy).append("-").append(mm + 1).append("-").append(dd).append(" "));
+        }
+    };
+
 
 
     public String onMultiAttemptsClicked(){
