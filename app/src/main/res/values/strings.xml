@@ -55,7 +55,7 @@
     <string-array name="challenge_qualities">
         <item>Beginner</item>
         <item>Intermediate</item>
-        <item>Professional</item>
+        <item>Proficient</item>
     </string-array>
 </resources>
 

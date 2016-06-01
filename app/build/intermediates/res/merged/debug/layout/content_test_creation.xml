@@ -201,13 +201,15 @@
         android:text="Test Publish Date:"
         android:id="@+id/captionTestPublishDate" />
     <LinearLayout
+        android:id="@+id/pub_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal" >
     <EditText
         android:id="@+id/testPublishDate"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
         android:layout_height="wrap_content"
         android:hint="yyyy-mm-dd" >
     </EditText>
@@ -223,13 +225,15 @@
         android:text="Test Activation Date:"
         android:id="@+id/captionTestActivationDate" />
     <LinearLayout
+        android:id="@+id/act_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal" >
     <EditText
         android:id="@+id/testActivationDate"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
         android:layout_height="wrap_content"
         android:hint="yyyy-mm-dd" >
     </EditText>
@@ -242,7 +246,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Targetted Skill Level:"
+        android:text="Targeted Skill Level:"
         android:id="@+id/captionSkillLevel" />
     <Spinner
         android:id="@+id/targetskilllevels"

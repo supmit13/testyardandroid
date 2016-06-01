@@ -3,7 +3,7 @@
     <string-array name="challenge_qualities">
         <item>Beginner</item>
         <item>Intermediate</item>
-        <item>Professional</item>
+        <item>Proficient</item>
     </string-array>
     <attr format="reference" name="drawerArrowStyle"/>
     <attr format="dimension" name="height"/>

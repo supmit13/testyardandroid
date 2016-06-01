@@ -1,12 +1,12 @@
 package xpresstech.testyard;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Base64;
+import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -21,7 +21,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.json.JSONObject;
-import com.dialog.DatePickerFragment;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -37,6 +36,8 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+//import android.app.Dialog;
 
 
 public class TestCreationActivity extends FragmentActivity {
@@ -54,6 +55,8 @@ public class TestCreationActivity extends FragmentActivity {
     private int yyyy;
     private int mm;
     private int dd;
+
+    private String target;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +89,7 @@ public class TestCreationActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 // On button click show datepicker dialog
+                target = "pub";
                 showDatePicker();
             }
         });
@@ -94,6 +98,7 @@ public class TestCreationActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 // On button click show datepicker dialog
+                target = "act";
                 showDatePicker();
             }
         });
@@ -134,37 +139,53 @@ public class TestCreationActivity extends FragmentActivity {
         dropdownprogenv.setAdapter(adapterprogenv);
     }
 
+
     private void showDatePicker() {
         DatePickerFragment date = new DatePickerFragment();
+        Bundle args = new Bundle();
+        Calendar cal=Calendar.getInstance();
+        int year=cal.get(Calendar.YEAR);
+        int month=cal.get(Calendar.MONTH);
+        int day=cal.get(Calendar.DAY_OF_MONTH);
+        args.putInt("year",year);
+        args.putInt("month", month);
+        args.putInt("day", day);
+        date.setArguments(args);
 
         date.setCallBack(ondate);
         date.show(getSupportFragmentManager(), "Date Picker");
     }
 
 
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DATE_PICKER_ID:
-                // open datepicker dialog.
-                // set date picker for current date
-                // add pickerListener listner to date picker
-                return new DatePickerDialog(this, pickerListener, yyyy, mm, dd);
-        }
-        return null;
-    }
-
-    private DatePickerDialog.OnDateSetListener pickerListener = new DatePickerDialog.OnDateSetListener() {
-        // when dialog box is closed, below method will be called.
+    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
         @Override
-        public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
-            yyyy  = selectedYear;
-            mm = selectedMonth;
-            dd   = selectedDay;
-            publishDate.setText(new StringBuilder().append(yyyy).append("-").append(mm + 1).append("-").append(dd).append(" "));
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            monthOfYear = monthOfYear + 1; // this is 0 indexed, so had to add 1
+            String mmstr = Integer.toString(monthOfYear);
+            if(mmstr.length() < 2){
+                mmstr = "0" + mmstr;
+            }
+            String ddstr = Integer.toString(dayOfMonth);
+            if(ddstr.length() < 2){
+                ddstr = "0" + ddstr;
+            }
+            //Log.d("DATEPICKER IMG BUTTON", target);
+            if (target.equals("pub")) {
+                EditText edittext_pubdate = (EditText) findViewById(R.id.testPublishDate);
+                edittext_pubdate.setText(new StringBuilder().append(String.valueOf(year)).append("-").append(mmstr).append("-").append(ddstr));
+            }
+            else if(target.equals("act")) {
+                EditText edittext_actdate = (EditText) findViewById(R.id.testActivationDate);
+                edittext_actdate.setText(new StringBuilder().append(String.valueOf(year)).append("-").append(mmstr).append("-").append(ddstr));
+            }
         }
     };
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //getMenuInflater().inflate(R.menu.activity_main, menu);
+        return true;
+    }
 
 
     public String onMultiAttemptsClicked(){

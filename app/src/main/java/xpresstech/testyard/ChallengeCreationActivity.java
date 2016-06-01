@@ -87,6 +87,8 @@ public class ChallengeCreationActivity extends AppCompatActivity {
             max_lines_count = new EditText(this);
             max_lines_text.setText(getString(R.string.response_lines_text));
             max_lines_count.setGravity(1);
+            max_lines_text.setId(R.id.max_text_id);
+            max_lines_count.setId(R.id.max_count_id);
             runtime_widgets_layout.addView(max_lines_text);
             runtime_widgets_layout.addView(max_lines_count);
         }
@@ -519,9 +521,11 @@ public class ChallengeCreationActivity extends AppCompatActivity {
         String usertype = pref.getString("usertype", "");
         String testName = pref.getString("testname", "");
         String testtypeselected = pref.getString("testtypeselected", "");
-        String negativescorevalue = pref.getString("negativescorevalue", "");
+        String negativescorevalue = pref.getString("negativescorevalue", "0");
+        if(negativescorevalue.equals("No")){
+            negativescorevalue = "0";
+        }
         String testlinkid = pref.getString("testlinkid", "");
-
         String filbresponsestr = "";
         String challengeType = "";
         String oneormorevalue = "";
@@ -545,7 +549,7 @@ public class ChallengeCreationActivity extends AppCompatActivity {
 
         String responseLinesCount = "";
         if(testtypeselected == "Coding" || testtypeselected == "Algorithm" || testtypeselected == "Subjective"){
-            EditText response_lines_count = (EditText)findViewById(R.id.response_lines_count);
+            EditText response_lines_count = (EditText)findViewById(R.id.max_count_id);
             responseLinesCount = response_lines_count.getText().toString();
             challengeType = testtypeselected;
         }
@@ -582,7 +586,7 @@ public class ChallengeCreationActivity extends AppCompatActivity {
             Spinner challenge_type = (Spinner)findViewById(R.id.challenge_type);
             challengeType = challenge_type.getSelectedItem().toString();
             if(challengeType == "Coding" || challengeType == "Subjective" || challengeType == "Algorithm"){
-                EditText response_lines_count = (EditText)findViewById(R.id.response_lines_count);
+                EditText response_lines_count = (EditText)findViewById(R.id.max_count_id);
                 responseLinesCount = response_lines_count.getText().toString();
             }
             else if(challengeType == "Fill up the Blanks"){
@@ -616,9 +620,6 @@ public class ChallengeCreationActivity extends AppCompatActivity {
         EditText challenge_score = (EditText)findViewById(R.id.challenge_score);
         String challengeScore = challenge_score.getText().toString();
 
-        EditText negative_score = (EditText)findViewById(R.id.negative_score);
-        String negativeScore = negative_score.getText().toString();
-
         EditText max_time_limit = (EditText)findViewById(R.id.max_time_limit);
         String maxTimeLimit = max_time_limit.getText().toString();
 
@@ -629,6 +630,14 @@ public class ChallengeCreationActivity extends AppCompatActivity {
         String compulsoryChallenge = "0";
         if(compulsory_challenge.isChecked()){
             compulsoryChallenge = "1";
+        }
+
+        if(negativescorevalue.equals("Yes")){
+            EditText negativeScore = (EditText)findViewById(R.id.negative_score);
+            negativescorevalue = negativeScore.getText().toString();
+            if(negativescorevalue.equals("")){
+                negativescorevalue = "0";
+            }
         }
         /*
         uploadButton = (Button)findViewById(R.id.media_file);
@@ -655,12 +664,13 @@ public class ChallengeCreationActivity extends AppCompatActivity {
             }
         });
         */
+
         final HashMap postDataParams = new HashMap<String, String>();
         postDataParams.put("challengeStatement", challengeStatement);
         postDataParams.put("externalResourceUrl", externalResourceUrl);
         //postDataParams.put("responseLinesCount", responseLinesCount);
         postDataParams.put("challengeScore", challengeScore);
-        postDataParams.put("negativeScore", negativeScore);
+        postDataParams.put("negativeScore", negativescorevalue);
         postDataParams.put("maxTimeLimit", maxTimeLimit);
         postDataParams.put("challengeQuality", challengeQuality);
         postDataParams.put("compulsoryChallenge", compulsoryChallenge);
@@ -671,7 +681,7 @@ public class ChallengeCreationActivity extends AppCompatActivity {
         postDataParams.put("maxResponseLinesCount", responseLinesCount);
         postDataParams.put("filbResponseStr", filbresponsestr);
         postDataParams.put("oneOrMoreValues", oneormorevalue);
-        ;
+
         postDataParams.put("option1Value", opt_1_val);
         postDataParams.put("option2Value", opt_2_val);
         postDataParams.put("option3Value", opt_3_val);
@@ -680,7 +690,6 @@ public class ChallengeCreationActivity extends AppCompatActivity {
         postDataParams.put("option6Value", opt_6_val);
         postDataParams.put("option7Value", opt_7_val);
         postDataParams.put("option8Value", opt_8_val);
-
         cookiestr = "sessioncode=" + sessionid + "; usertype=" + usertype + "; csrftoken=";
         Thread thread = new Thread(new Runnable(){
             @Override
@@ -702,10 +711,12 @@ public class ChallengeCreationActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-        Pattern p = Pattern.compile("Challenge\\s+object\\s+created\\s+successfully");
+        Pattern p = Pattern.compile("The\\s+challenge\\s+was\\s+successfully\\s+saved.");
         Matcher m = p.matcher(response);
-        if(m.matches()) {
-            //Display screen according to the button on which the user tapped.
+        if(m.matches()) { // Show the challenge creation screen again
+            Intent intent = new Intent(this, ChallengeCreationActivity.class);
+            finish();
+            startActivity(intent);
         }
     }
 
@@ -731,7 +742,7 @@ public class ChallengeCreationActivity extends AppCompatActivity {
     }
 
     // Some functions that should be in a common file... I must comsolidate these one of these days.
-    public String  sendPostRequest(String requestURL, HashMap<String, String> postDataParams) {
+    public String sendPostRequest(String requestURL, HashMap<String, String> postDataParams) {
         URL url;
         //String csrftoken = "";
         try {
@@ -811,6 +822,7 @@ public class ChallengeCreationActivity extends AppCompatActivity {
         String encodedString = Base64.encodeToString(encryptedBytes, Base64.DEFAULT);
         return (encodedString);
     }
+
 
     public void backToMainMenu(View view){
         SharedPreferences apppref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
