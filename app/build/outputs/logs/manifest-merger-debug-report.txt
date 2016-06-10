@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:2:1-106:12
+ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:2:1-115:12
 	xmlns:android
 		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:2:11-69
 	package
@@ -18,7 +18,7 @@ ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/A
 	android:name
 		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:5:22-64
 application
-ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:7:5-104:19
+ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:7:5-113:19
 MERGED from [com.android.support:appcompat-v7:23.2.0] /home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-v4:23.2.0] /home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:animated-vector-drawable:23.2.0] /home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.2.0/AndroidManifest.xml:7:5-20
@@ -126,54 +126,64 @@ ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/A
 		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:58:13-55
 	android:name
 		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:56:13-47
-activity#xpresstech.testyard.TakeTestActivity
+activity#xpresstech.testyard.ListTestsByCreatorActivity
 ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:64:9-72:20
 	android:label
-		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:66:13-61
+		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:66:13-58
 	android:theme
 		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:68:13-56
 	android:parentActivityName
 		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:67:13-55
 	android:name
-		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:65:13-45
-activity#xpresstech.testyard.ConductInterviewActivity
+		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:65:13-55
+activity#xpresstech.testyard.TakeTestActivity
 ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:73:9-81:20
 	android:label
-		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:75:13-69
+		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:75:13-61
 	android:theme
 		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:77:13-56
 	android:parentActivityName
 		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:76:13-55
 	android:name
-		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:74:13-53
-activity#xpresstech.testyard.ScheduleInterviewActivity
+		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:74:13-45
+activity#xpresstech.testyard.ConductInterviewActivity
 ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:82:9-90:20
 	android:label
-		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:84:13-70
+		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:84:13-69
 	android:theme
 		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:86:13-56
 	android:parentActivityName
 		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:85:13-55
 	android:name
-		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:83:13-54
-activity#xpresstech.testyard.AttendInterviewActivity
+		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:83:13-53
+activity#xpresstech.testyard.ScheduleInterviewActivity
 ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:91:9-99:20
 	android:label
-		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:93:13-68
+		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:93:13-70
 	android:theme
 		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:95:13-56
 	android:parentActivityName
 		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:94:13-55
 	android:name
-		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:92:13-52
-activity#xpresstech.testyard.ChallengeCreationActivity
-ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:100:9-103:68
+		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:92:13-54
+activity#xpresstech.testyard.AttendInterviewActivity
+ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:100:9-108:20
 	android:label
-		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:102:13-70
+		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:102:13-68
 	android:theme
-		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:103:13-56
+		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:104:13-56
+	android:parentActivityName
+		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:103:13-55
 	android:name
-		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:101:13-54
+		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:101:13-52
+activity#xpresstech.testyard.ChallengeCreationActivity
+ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:109:9-112:68
+	android:label
+		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:111:13-70
+	android:theme
+		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:112:13-56
+	android:name
+		ADDED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml:110:13-54
 uses-sdk
 INJECTED from /home/supmit/work/testyard/experiments/testyardandroid/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.2.0] /home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/AndroidManifest.xml:21:5-23:78

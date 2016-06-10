@@ -32,9 +32,7 @@
         android:id="@+id/testname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
         <requestFocus />
-
     </EditText>
     <TextView
         android:layout_width="fill_parent"
@@ -80,7 +78,8 @@
     <EditText
         android:id="@+id/totalscore"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:inputType="number" >
     </EditText>
 
     <TextView
@@ -91,7 +90,8 @@
     <EditText
         android:id="@+id/challengesCount"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:inputType="number" >
     </EditText>
 
     <TextView
@@ -148,7 +148,8 @@
     <EditText
         android:id="@+id/passScore"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:inputType="number" >
     </EditText>
 
     <TextView
@@ -159,7 +160,8 @@
     <EditText
         android:id="@+id/testDuration"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:inputType="number" >
     </EditText>
 
     <TextView
@@ -170,7 +172,8 @@
     <EditText
         android:id="@+id/maxChallengeDuration"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:inputType="number" >
     </EditText>
 
     <TextView
@@ -211,7 +214,8 @@
         android:layout_width="0dp"
         android:layout_weight="0.5"
         android:layout_height="wrap_content"
-        android:hint="yyyy-mm-dd" >
+        android:hint="yyyy-mm-dd"
+        android:inputType="number" >
     </EditText>
     <ImageButton
         android:id="@+id/imageButtonPublish"
@@ -235,7 +239,8 @@
         android:layout_width="0dp"
         android:layout_weight="0.5"
         android:layout_height="wrap_content"
-        android:hint="yyyy-mm-dd" >
+        android:hint="yyyy-mm-dd"
+        android:inputType="number" >
     </EditText>
     <ImageButton
         android:id="@+id/imageButtonActivate"

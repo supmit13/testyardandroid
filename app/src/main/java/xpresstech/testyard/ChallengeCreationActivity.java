@@ -161,22 +161,110 @@ public class ChallengeCreationActivity extends AppCompatActivity {
                             Log.d("Error: ", "Could not find the desired element");
                             e.printStackTrace();
                         }
+                        TextView multiple_chc_options_view = null;
+                        try{
+                            multiple_chc_options_view = (TextView)findViewById(R.id.multiple_chc_options_id);
+                        }
+                        catch(Exception e){
+                            Log.d("Error: ", "Could not find the desired element");
+                            e.printStackTrace();
+                        }
                         if(multiple_chc_text_view != null){
                             ((ViewManager)multiple_chc_text_view.getParent()).removeView(multiple_chc_text_view);
+                        }
+                        if(multiple_chc_options_view != null){
+                            ((ViewManager)multiple_chc_options_view.getParent()).removeView(multiple_chc_options_view);
                         }
                         EditText [] optionstext = new EditText[8];
                         for(int i=0; i < 8; i++){
                             optionstext[i] = null;
-                            try{
-                                int optid = i + 100;
-                                optionstext[i] = (EditText)findViewById(optid);
+                            if(i == 0) {
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_1);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
                             }
-                            catch(Exception e){
-                                Log.d("Error: ", "Could not find the desired element");
-                                e.printStackTrace();
+                            else if(i==1){
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_2);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
                             }
-                            if(optionstext[i] != null){
-                                ((ViewManager)optionstext[i].getParent()).removeView(optionstext[i]);
+                            else if(i==2){
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_3);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
+                            }
+                            else if(i==3){
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_4);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
+                            }
+                            else if(i==4){
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_5);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
+                            }
+                            else if(i==5){
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_6);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
+                            }
+                            else if(i==6){
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_7);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
+                            }
+                            else if(i==7){
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_8);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
                             }
                         }
                         // Remove fill up the blank views
@@ -298,7 +386,7 @@ public class ChallengeCreationActivity extends AppCompatActivity {
 
                             final TextView multiple_chc_options_text = new TextView(cxt);
                             multiple_chc_options_text.setText(getString(R.string.multiple_chc_options_text));
-                            multiple_chc_options_text.setId(R.id.multiple_chc_text);
+                            multiple_chc_options_text.setId(R.id.multiple_chc_options_id);
                             runtime_widgets_layout_inner.addView(multiple_chc_options_text);
 
                             final EditText [] options = new EditText[8];
@@ -376,22 +464,110 @@ public class ChallengeCreationActivity extends AppCompatActivity {
                             Log.d("Error: ", "Could not find the desired element");
                             e.printStackTrace();
                         }
+                        TextView multiple_chc_options_view = null;
+                        try{
+                            multiple_chc_options_view = (TextView)findViewById(R.id.multiple_chc_options_id);
+                        }
+                        catch(Exception e){
+                            Log.d("Error: ", "Could not find the desired element");
+                            e.printStackTrace();
+                        }
                         if(multiple_chc_text_view != null){
                             ((ViewManager)multiple_chc_text_view.getParent()).removeView(multiple_chc_text_view);
+                        }
+                        if(multiple_chc_options_view != null){
+                            ((ViewManager)multiple_chc_options_view.getParent()).removeView(multiple_chc_options_view);
                         }
                         EditText [] optionstext = new EditText[8];
                         for(int i=0; i < 8; i++){
                             optionstext[i] = null;
-                            try{
-                                int optid = i + 100;
-                                optionstext[i] = (EditText)findViewById(optid);
+                            if(i == 0) {
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_1);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
                             }
-                            catch(Exception e){
-                                Log.d("Error: ", "Could not find the desired element");
-                                e.printStackTrace();
+                            else if(i==1){
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_2);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
                             }
-                            if(optionstext[i] != null){
-                                ((ViewManager)optionstext[i].getParent()).removeView(optionstext[i]);
+                            else if(i==2){
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_3);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
+                            }
+                            else if(i==3){
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_4);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
+                            }
+                            else if(i==4){
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_5);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
+                            }
+                            else if(i==5){
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_6);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
+                            }
+                            else if(i==6){
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_7);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
+                            }
+                            else if(i==7){
+                                try {
+                                    optionstext[i] = (EditText) findViewById(R.id.option_8);
+                                } catch (Exception e) {
+                                    Log.d("Error: ", "Could not find the desired element");
+                                    e.printStackTrace();
+                                }
+                                if (optionstext[i] != null) {
+                                    ((ViewManager) optionstext[i].getParent()).removeView(optionstext[i]);
+                                }
                             }
                         }
                         TextView max_text_view = null;
@@ -728,7 +904,203 @@ public class ChallengeCreationActivity extends AppCompatActivity {
 
 
     public void saveClose(View view){
+        SharedPreferences pref;
+        pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        String username = pref.getString("username", "");
+        String sessionid = pref.getString("session_id", "");
+        String usertype = pref.getString("usertype", "");
+        String testName = pref.getString("testname", "");
+        String testtypeselected = pref.getString("testtypeselected", "");
+        String negativescorevalue = pref.getString("negativescorevalue", "0");
+        if(negativescorevalue.equals("No")){
+            negativescorevalue = "0";
+        }
+        String testlinkid = pref.getString("testlinkid", "");
+        String filbresponsestr = "";
+        String challengeType = "";
+        String oneormorevalue = "";
 
+        String opt_1_val = "";
+        String opt_2_val = "";
+        String opt_3_val = "";
+        String opt_4_val = "";
+        String opt_5_val = "";
+        String opt_6_val = "";
+        String opt_7_val = "";
+        String opt_8_val = "";
+
+        final String uploadFileName = "challenge_" + username + "_" + sessionid; // File extension needs to be extracted from the real filename later.
+
+        EditText challenge_statement   = (EditText)findViewById(R.id.challenge_statement);
+        String challengeStatement = challenge_statement.getText().toString();
+
+        EditText external_resource_url = (EditText)findViewById(R.id.external_resource_url);
+        String externalResourceUrl = external_resource_url.getText().toString();
+
+        String responseLinesCount = "";
+        if(testtypeselected == "Coding" || testtypeselected == "Algorithm" || testtypeselected == "Subjective"){
+            EditText response_lines_count = (EditText)findViewById(R.id.max_count_id);
+            responseLinesCount = response_lines_count.getText().toString();
+            challengeType = testtypeselected;
+        }
+        else if(testtypeselected == "Fill up the Blanks"){
+            EditText filbresponse = (EditText)findViewById(R.id.filb_correct_resp_field_id);
+            filbresponsestr = filbresponse.getText().toString();
+            challengeType = testtypeselected;
+        }
+        else if(testtypeselected == "Multiple Choice"){
+            RadioGroup oneormoregrp = (RadioGroup) findViewById(R.id.oneormore);
+            int selectedId1 = oneormoregrp.getCheckedRadioButtonId();
+            RadioButton rdbtn1 = (RadioButton) findViewById(selectedId1);
+            oneormorevalue = (String) rdbtn1.getText();
+            challengeType = testtypeselected;
+
+            EditText option01 = (EditText)findViewById(R.id.option_1);
+            opt_1_val = option01.getText().toString();
+            EditText option02 = (EditText)findViewById(R.id.option_2);
+            opt_2_val = option02.getText().toString();
+            EditText option03 = (EditText)findViewById(R.id.option_3);
+            opt_3_val = option03.getText().toString();
+            EditText option04 = (EditText)findViewById(R.id.option_4);
+            opt_4_val = option04.getText().toString();
+            EditText option05 = (EditText)findViewById(R.id.option_5);
+            opt_5_val = option05.getText().toString();
+            EditText option06 = (EditText)findViewById(R.id.option_6);
+            opt_6_val = option06.getText().toString();
+            EditText option07 = (EditText)findViewById(R.id.option_7);
+            opt_7_val = option07.getText().toString();
+            EditText option08 = (EditText)findViewById(R.id.option_8);
+            opt_8_val = option08.getText().toString();
+        }
+        else if(testtypeselected == "Composite"){
+            Spinner challenge_type = (Spinner)findViewById(R.id.challenge_type);
+            challengeType = challenge_type.getSelectedItem().toString();
+            if(challengeType == "Coding" || challengeType == "Subjective" || challengeType == "Algorithm"){
+                EditText response_lines_count = (EditText)findViewById(R.id.max_count_id);
+                responseLinesCount = response_lines_count.getText().toString();
+            }
+            else if(challengeType == "Fill up the Blanks"){
+                EditText filbresponse = (EditText)findViewById(R.id.filb_correct_resp_field_id);
+                filbresponsestr = filbresponse.getText().toString();
+            }
+            else if(challengeType == "Multiple Choice"){
+                RadioGroup oneormoregrp = (RadioGroup) findViewById(R.id.oneormore);
+                int selectedId1 = oneormoregrp.getCheckedRadioButtonId();
+                RadioButton rdbtn1 = (RadioButton) findViewById(selectedId1);
+                oneormorevalue = (String) rdbtn1.getText();
+                EditText option01 = (EditText)findViewById(R.id.option_1);
+                opt_1_val = option01.getText().toString();
+                EditText option02 = (EditText)findViewById(R.id.option_2);
+                opt_2_val = option02.getText().toString();
+                EditText option03 = (EditText)findViewById(R.id.option_3);
+                opt_3_val = option03.getText().toString();
+                EditText option04 = (EditText)findViewById(R.id.option_4);
+                opt_4_val = option04.getText().toString();
+                EditText option05 = (EditText)findViewById(R.id.option_5);
+                opt_5_val = option05.getText().toString();
+                EditText option06 = (EditText)findViewById(R.id.option_6);
+                opt_6_val = option06.getText().toString();
+                EditText option07 = (EditText)findViewById(R.id.option_7);
+                opt_7_val = option07.getText().toString();
+                EditText option08 = (EditText)findViewById(R.id.option_8);
+                opt_8_val = option08.getText().toString();
+            }
+        }
+
+        EditText challenge_score = (EditText)findViewById(R.id.challenge_score);
+        String challengeScore = challenge_score.getText().toString();
+
+        EditText max_time_limit = (EditText)findViewById(R.id.max_time_limit);
+        String maxTimeLimit = max_time_limit.getText().toString();
+
+        Spinner challenge_quality = (Spinner)findViewById(R.id.challenge_quality);
+        String challengeQuality = challenge_quality.getSelectedItem().toString();
+
+        CheckBox compulsory_challenge = (CheckBox)findViewById(R.id.compulsory_challenge);
+        String compulsoryChallenge = "0";
+        if(compulsory_challenge.isChecked()){
+            compulsoryChallenge = "1";
+        }
+
+        if(negativescorevalue.equals("Yes")){
+            EditText negativeScore = (EditText)findViewById(R.id.negative_score);
+            negativescorevalue = negativeScore.getText().toString();
+            if(negativescorevalue.equals("")){
+                negativescorevalue = "0";
+            }
+        }
+        /*
+        uploadButton = (Button)findViewById(R.id.media_file);
+        messageText  = (TextView)findViewById(R.id.media_file_text);
+        messageText.setText("Uploading file...");
+        upLoadServerUri = getString(R.string.upload_server_url);
+
+        uploadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog = ProgressDialog.show(ChallengeCreationActivity.this, "", "Uploading file...", true);
+                new Thread(new Runnable() {
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                messageText.setText("uploading started.....");
+                            }
+                        });
+
+                        uploadFile(uploadFilePath + "" + uploadFileName);
+
+                    }
+                }).start();
+            }
+        });
+        */
+
+        final HashMap postDataParams = new HashMap<String, String>();
+        postDataParams.put("challengeStatement", challengeStatement);
+        postDataParams.put("externalResourceUrl", externalResourceUrl);
+        //postDataParams.put("responseLinesCount", responseLinesCount);
+        postDataParams.put("challengeScore", challengeScore);
+        postDataParams.put("negativeScore", negativescorevalue);
+        postDataParams.put("maxTimeLimit", maxTimeLimit);
+        postDataParams.put("challengeQuality", challengeQuality);
+        postDataParams.put("compulsoryChallenge", compulsoryChallenge);
+        postDataParams.put("testname", testName);
+        postDataParams.put("testlinkid", testlinkid);
+        postDataParams.put("testtypeselected", testtypeselected);
+        postDataParams.put("challengeType", challengeType);
+        postDataParams.put("maxResponseLinesCount", responseLinesCount);
+        postDataParams.put("filbResponseStr", filbresponsestr);
+        postDataParams.put("oneOrMoreValues", oneormorevalue);
+
+        postDataParams.put("option1Value", opt_1_val);
+        postDataParams.put("option2Value", opt_2_val);
+        postDataParams.put("option3Value", opt_3_val);
+        postDataParams.put("option4Value", opt_4_val);
+        postDataParams.put("option5Value", opt_5_val);
+        postDataParams.put("option6Value", opt_6_val);
+        postDataParams.put("option7Value", opt_7_val);
+        postDataParams.put("option8Value", opt_8_val);
+        cookiestr = "sessioncode=" + sessionid + "; usertype=" + usertype + "; csrftoken=";
+        Thread thread = new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    String addChallengeUrl = getString(R.string.add_challenge_url);
+                    response = sendPostRequest(addChallengeUrl, postDataParams);
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
     }
 
 

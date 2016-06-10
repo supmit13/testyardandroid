@@ -68,6 +68,15 @@
                 android:value="xpresstech.testyard.MainActivity" />
         </activity>
         <activity
+            android:name="xpresstech.testyard.ListTestsByCreatorActivity"
+            android:label="@string/list_tests_by_creator"
+            android:parentActivityName="xpresstech.testyard.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="xpresstech.testyard.MainActivity" />
+        </activity>
+        <activity
             android:name="xpresstech.testyard.TakeTestActivity"
             android:label="@string/title_activity_take_test"
             android:parentActivityName="xpresstech.testyard.MainActivity"

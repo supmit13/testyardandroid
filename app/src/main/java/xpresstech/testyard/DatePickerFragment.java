@@ -38,6 +38,8 @@ public class DatePickerFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        return new DatePickerDialog(getActivity(), ondateSet, year, month, day);
+        DatePickerDialog picker = new DatePickerDialog(getActivity(), ondateSet, year, month, day);
+        picker.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        return (picker);
     }
 }

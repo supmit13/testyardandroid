@@ -126,7 +126,7 @@ public class LoginScreenActivity extends Activity {
                 intent = new Intent(this, ListTestsAndInterviewsActivity.class);
             }
             else if(selected_option == 2) {
-                intent = new Intent(this, CreateTestActivity.class);
+                intent = new Intent(this, ListTestsByCreatorActivity.class);
             }
             else if(selected_option == 3) {
                 intent = new Intent(this, ConductInterviewActivity.class);
