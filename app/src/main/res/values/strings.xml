@@ -26,12 +26,13 @@
     <string name="title_activity_conduct_interview">ConductInterviewActivity</string>
     <string name="title_activity_attend_interview">AttendInterviewActivity</string>
     <string name="title_activity_schedule_interview">ScheduleInterviewActivity</string>
-    <string name="verifyurl">http://192.168.1.4:8080/skillstest/mobile/verifycreds/</string>
-    <string name="list_tests_interviews_url">http://192.168.1.4:8080/skillstest/mobile/listtestsinterviews/</string>
-    <string name="test_creation_url">http://192.168.1.4:8080/skillstest/mobile/tests/create/</string>
-    <string name="upload_server_url">http://192.168.1.4:8080/skillstest/mobile/tests/uploadfile/</string>
-    <string name="add_challenge_url">http://192.168.1.4:8080/skillstest/mobile/tests/addchallenge/</string>
-    <string name="list_tests_by_creator_url">http://192.168.1.4:8080/skillstest/mobile/tests/listcreatortests/</string>
+    <string name="verifyurl">http://192.168.1.4:8000/skillstest/mobile/verifycreds/</string>
+    <string name="list_tests_interviews_url">http://192.168.1.4:8000/skillstest/mobile/listtestsinterviews/</string>
+    <string name="test_creation_url">http://192.168.1.4:8000/skillstest/mobile/tests/create/</string>
+    <string name="upload_server_url">http://192.168.1.4:8000/skillstest/mobile/tests/uploadfile/</string>
+    <string name="add_challenge_url">http://192.168.1.4:8000/skillstest/mobile/tests/addchallenge/</string>
+    <string name="schedule_test_url">http://192.168.1.4:8000/skillstest/mobile/tests/setschedule/</string>
+    <string name="list_tests_by_creator_url">http://192.168.1.4:8000/skillstest/mobile/tests/showcreatortests/</string>
     <string name="allow_multimedia">Allow Multimedia in Challenge Statements</string>
     <string name="random_sequenced">Challenges Should be Randomly Sequenced</string>
     <string name="multiple_attempts">Allow Multiple Attempts By Candidates</string>
@@ -51,6 +52,7 @@
     <string name="save_close_button">Save and Close</string>
     <string name="close_button">Close</string>
     <string name="title_activity_challenge_creation">ChallengeCreationActivity</string>
+    <string name="title_activity_test_creator">ListTestsByCreatorActivity</string>
     <string name="filb_response_caption_text">Enter the correct response</string>
     <string name="multiple_chc_oneormore_text">Can there be more than one correct answer?</string>
     <string name="multiple_chc_options_text">Please enter the options you want to be made available for this challenge [max 8]</string>
@@ -59,5 +61,11 @@
         <item>Intermediate</item>
         <item>Proficient</item>
     </string-array>
+    <string name="schedule_test_button">Schedule this test</string>
+    <string name="cancel_test_button">Cancel Schedule</string>
+    <string name="schedule_test_divider">----------------------------------------</string>
+    <string name="schedule_test_email_ids">Enter Email Ids here</string>
+    <string name="go_schedule">Send Schedule</string>
+    <string name="schedule_date_hint">yyyy-mm-dd</string>
 </resources>
 

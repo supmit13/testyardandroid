@@ -25,5 +25,6 @@
     <item type="id" name="option_8" />
 
     <item type="id" name="email_view" />
+    <item type="id" name="scheduleDate" />
 </resources>
 

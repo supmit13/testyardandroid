@@ -274,6 +274,7 @@
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
     <item name="response_lines_count" type="id"/>
+    <item name="scheduleDate" type="id"/>
     <item name="split_action_bar" type="id"/>
     <item name="up" type="id"/>
     <item name="view_offset_helper" type="id"/>
@@ -304,7 +305,7 @@
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="action_settings">Settings</string>
-    <string name="add_challenge_url">http://192.168.1.4:8080/skillstest/mobile/tests/addchallenge/</string>
+    <string name="add_challenge_url">http://192.168.1.4:8000/skillstest/mobile/tests/addchallenge/</string>
     <string name="add_challenges">Add Challenges</string>
     <string name="allow_multimedia">Allow Multimedia in Challenge Statements</string>
     <string name="app_name">TestYard App</string>
@@ -319,6 +320,7 @@
     <string name="button_schedule_test">Schedule a Test</string>
     <string name="button_send">Send</string>
     <string name="button_take_test">Take a Test</string>
+    <string name="cancel_test_button">Cancel Schedule</string>
     <string name="challenge_note">Note: To write a mathematical formula with special characters such as α or β, please open the following link in another browser window: http://math.typeit.org/ . Write the formula in the editable text area on that page and copy / paste it here on the above text area.</string>
     <string name="challenge_quality_text">Quality of the Challenge:</string>
     <string name="challenge_score">*Score for this Challenge/Question:</string>
@@ -331,10 +333,11 @@
     <string name="edit_testname">Search my Interviews/Tests by name</string>
     <string name="ext_resource_text">External resource URL (if any) referred by this challenge/question:</string>
     <string name="filb_response_caption_text">Enter the correct response</string>
+    <string name="go_schedule">Send Schedule</string>
     <string name="layout_behavior"/>
     <string name="list_tests_by_creator">ListTestsByCreatorActivity</string>
-    <string name="list_tests_by_creator_url">http://192.168.1.4:8080/skillstest/mobile/tests/listcreatortests/</string>
-    <string name="list_tests_interviews_url">http://192.168.1.4:8080/skillstest/mobile/listtestsinterviews/</string>
+    <string name="list_tests_by_creator_url">http://192.168.1.4:8000/skillstest/mobile/tests/showcreatortests/</string>
+    <string name="list_tests_interviews_url">http://192.168.1.4:8000/skillstest/mobile/listtestsinterviews/</string>
     <string name="max_time_limit">Maximum Time Limit (in seconds)</string>
     <string name="multiple_attempts">Allow Multiple Attempts By Candidates</string>
     <string name="multiple_chc_oneormore_text">Can there be more than one correct answer?</string>
@@ -345,8 +348,13 @@
     <string name="response_lines_text">Maximum Number of Lines in Response:</string>
     <string name="save_add_challenge">Save &amp; Add More</string>
     <string name="save_close_button">Save and Close</string>
+    <string name="schedule_date_hint">yyyy-mm-dd</string>
+    <string name="schedule_test_button">Schedule this test</string>
+    <string name="schedule_test_divider">----------------------------------------</string>
+    <string name="schedule_test_email_ids">Enter Email Ids here</string>
+    <string name="schedule_test_url">http://192.168.1.4:8000/skillstest/mobile/tests/setschedule/</string>
     <string name="status_bar_notification_info_overflow">999+</string>
-    <string name="test_creation_url">http://192.168.1.4:8080/skillstest/mobile/tests/create/</string>
+    <string name="test_creation_url">http://192.168.1.4:8000/skillstest/mobile/tests/create/</string>
     <string name="title_activity_attend_interview">AttendInterviewActivity</string>
     <string name="title_activity_challenge_creation">ChallengeCreationActivity</string>
     <string name="title_activity_conduct_interview">ConductInterviewActivity</string>
@@ -356,10 +364,11 @@
     <string name="title_activity_schedule_interview">ScheduleInterviewActivity</string>
     <string name="title_activity_take_test">TakeTestActivity</string>
     <string name="title_activity_test_creation">TestCreationActivity</string>
+    <string name="title_activity_test_creator">ListTestsByCreatorActivity</string>
     <string name="upload_media_file">Upload Media File:</string>
-    <string name="upload_server_url">http://192.168.1.4:8080/skillstest/mobile/tests/uploadfile/</string>
+    <string name="upload_server_url">http://192.168.1.4:8000/skillstest/mobile/tests/uploadfile/</string>
     <string name="username">Username</string>
-    <string name="verifyurl">http://192.168.1.4:8080/skillstest/mobile/verifycreds/</string>
+    <string name="verifyurl">http://192.168.1.4:8000/skillstest/mobile/verifycreds/</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>

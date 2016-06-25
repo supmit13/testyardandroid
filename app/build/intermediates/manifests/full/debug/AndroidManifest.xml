@@ -115,7 +115,11 @@
         <activity
             android:name="xpresstech.testyard.ChallengeCreationActivity"
             android:label="@string/title_activity_challenge_creation"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="xpresstech.testyard.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

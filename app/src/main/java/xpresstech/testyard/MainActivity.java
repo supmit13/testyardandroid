@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void scheduleTest(View view){
         SharedPreferences apppref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
-        SharedPreferences.Editor editor = apppref.edit();
+        //SharedPreferences.Editor editor = apppref.edit();
         String sessionId = apppref.getString("session_id", "");
         Intent intent = new Intent(this, ListTestsByCreatorActivity.class);
         if(sessionId == "") {
