@@ -59,6 +59,7 @@ public class ListTestsByCreatorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        response = "";
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run() {
@@ -80,8 +81,8 @@ public class ListTestsByCreatorActivity extends AppCompatActivity {
         final android.content.Context cxt = this;
 
         try {
-            JSONObject jsonobj = new JSONObject(response);
             //Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+            JSONObject jsonobj = new JSONObject(response);
             JSONArray creatorkeys = jsonobj.names();
             if(creatorkeys == null){
                 creatorkeys = new JSONArray();
@@ -386,6 +387,7 @@ public class ListTestsByCreatorActivity extends AppCompatActivity {
         postDataParams.put("username", username);
 
         cookiestr = "sessioncode=" + sessionid + "; usertype=" + usertype + "; csrftoken=";
+        response = "";
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run() {
@@ -503,6 +505,7 @@ public class ListTestsByCreatorActivity extends AppCompatActivity {
             String postDataParamsString = getPostDataString(postDataParams);
             String keystring = "schedule";
             String ivstring = "schedule";
+            //Log.d("", "===================================" + keystring);
             String postDataParamsStringEncoded = base64Encode(postDataParamsString);
             String postDataParamsStringEncrypted = des3Encrypt(postDataParamsStringEncoded, keystring, ivstring);
             String data = "data=";
@@ -514,6 +517,7 @@ public class ListTestsByCreatorActivity extends AppCompatActivity {
             writer.flush();
             writer.close();
             int responseCode=conn.getResponseCode();
+            //Log.d("Response CODE STRING:", Integer.toString(responseCode));
             if (responseCode == HttpURLConnection.HTTP_OK){
                 String line;
                 BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));

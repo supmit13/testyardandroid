@@ -442,8 +442,13 @@ public class TestCreationActivity extends FragmentActivity {
         startActivity(intent);
     }
 
+    // To Do: This tries to kill the app but it might not succeed as per the posts on stackoverflow.
+    // We need to write a definitive code for this later on such that the app gets closed for sure.
+    // Right now, my knowledge is lacking in this aspect.
     public void closeapp(View view){
-
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(0);
     }
 
     public void onMultiAttemptsClicked(View view){

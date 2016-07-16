@@ -186,12 +186,10 @@ public class LoginScreenActivity extends Activity {
                 String [] cookieparts = cookieslist[0].split("=");
                 String usertype = cookieparts[1];
                 response += "&usertype=" + usertype;
-                //Log.d("COOKIE RECVD========= ", cookie_recvd);
             }
             else {
                 response="";
             }
-
         }
         catch (Exception e) {
             e.printStackTrace();
