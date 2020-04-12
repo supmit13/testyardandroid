@@ -16,12 +16,13 @@
             android:layout_height="wrap_content"
             android:text="@string/button_back"
             android:onClick="backToMainMenu" />
-        <TextView
+        <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Add Challenges"
-            android:id="@+id/addchallenges" />
+            android:id="@+id/add_challenges">
+        </EditText>
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -34,6 +35,30 @@
             android:inputType="text|textMultiLine"
             android:gravity="top">
         </EditText>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="60dp"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageButton
+                android:id="@+id/btnSpeak"
+                android:layout_width="150px"
+                android:layout_height="150px"
+                android:background="@null"
+                android:src="@drawable/ico_mic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/tap_on_mic"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+        </LinearLayout>
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

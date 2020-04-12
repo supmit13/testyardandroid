@@ -1,8 +1,10 @@
 package xpresstech.testyard;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -31,12 +34,16 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public class ChallengeCreationActivity extends AppCompatActivity {
+
+    private final int REQ_CODE_SPEECH_INPUT = 100;
 
     TextView messageText;
     Button uploadButton;
@@ -59,6 +66,39 @@ public class ChallengeCreationActivity extends AppCompatActivity {
     EditText fitb_editbox;
     TextView fitb_text;
 
+    private void promptSpeechInput() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.speech_prompt));
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+        }
+        catch (ActivityNotFoundException a) {
+            Toast.makeText(getApplicationContext(), getString(R.string.speech_not_supported), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    TextView challenge_statement = (TextView) findViewById(R.id.challenge_statement);
+                    challenge_statement.setText(result.get(0));
+                }
+                break;
+            }
+
+        }
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +109,15 @@ public class ChallengeCreationActivity extends AppCompatActivity {
         //String[] qualitytypes = new String[]{"Beginner", "Intermediate", "Professional"};
         //ArrayAdapter<String> adapterqualities = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, qualitytypes);
         //dropdownqualities.setAdapter(adapterqualities);
+        TextView challenge_statement = (TextView) findViewById(R.id.challenge_statement);
+        ImageButton btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
+        btnSpeak.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                promptSpeechInput();
+            }
+        });
         SharedPreferences pref;
         pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         String testtypeselected = pref.getString("testtypeselected", "");

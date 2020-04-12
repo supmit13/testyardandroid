@@ -22,7 +22,10 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -30,12 +33,22 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.security.KeyStore;
+import java.security.SecureRandom;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateFactory;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManagerFactory;
 
 //import android.app.Dialog;
 
@@ -333,11 +346,12 @@ public class TestCreationActivity extends FragmentActivity {
             e.printStackTrace();
         }
         Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
         Pattern p = Pattern.compile("Test\\s+object\\s+created\\s+successfully");
         Matcher m = p.matcher(message);
         if(m.matches()) {
             Button btncreatetest = (Button) findViewById(R.id.createtest);
-            btncreatetest.setEnabled(false);
+            btncreatetest.setClickable(false);
             Button btnaddchallenges = (Button) findViewById(R.id.addchallenges);
             btnaddchallenges.setEnabled(true);
             SharedPreferences apppref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
@@ -353,12 +367,67 @@ public class TestCreationActivity extends FragmentActivity {
     public String  sendPostRequest(String requestURL, HashMap<String, String> postDataParams) {
         URL url;
         //String csrftoken = "";
+        SSLContext context = null;
+        ///////////////////////////////// The following part handles self signed certificates. /////////////////////////////
+        // Start of code to evade "java.security.cert.CertPathValidatorException"
+        CertificateFactory cf = null;
+        InputStream caInput = null;
+        try {
+            cf = CertificateFactory.getInstance("X.509");
+            caInput = new BufferedInputStream(new FileInputStream("/sdcard/sware/testyard.crt"));
+            //caInput = new BufferedInputStream(new FileInputStream("/home/supriyo/work/testyard/testyard/skillstest/etc_conf/testyard.crt"));
+            //System.out.println("========================== caInput = " + caInput + "====================================");
+        }
+        catch(Exception e){
+            System.out.println("Couldn't create certificate factory: " + e.getMessage());
+        }
+        Certificate ca = null;
+        try {
+            ca = cf.generateCertificate(caInput);
+            //System.out.println("******************************ca=" + ((X509Certificate) ca).getSubjectDN());
+        }
+        catch(Exception e) {
+            //caInput.close();
+            System.out.println("========================== Incurred exception - " + e.getMessage() + " ===============================");
+        }
+        // Create a KeyStore containing our trusted CAs
+        String keyStoreType = KeyStore.getDefaultType();
+        KeyStore keyStore = null;
+        try {
+            keyStore = KeyStore.getInstance(keyStoreType);
+            keyStore.load(null, null);
+            keyStore.setCertificateEntry("testyard", ca);
+        }
+        catch(Exception e){
+            System.out.println("Choking here.... after setCertificateEntry: " + e.getMessage());
+        }
+        String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+        try {
+            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+            tmf.init(keyStore);
+            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() { // Handle hostname verifier to return true irrespective of whether the host is verifiable or not.
+                @Override
+                public boolean verify(String s, SSLSession sslSession) {
+                    return true;
+                }
+
+            });
+            // Create an SSLContext that uses our TrustManager
+            context = SSLContext.getInstance("TLS");
+            context.init(null, tmf.getTrustManagers(), new SecureRandom());
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
         try {
             url = new URL(requestURL);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+            conn.setSSLSocketFactory(context.getSocketFactory());
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             conn.setRequestProperty("Accept", "*/*");
+            conn.setRequestProperty("Referer", getString(R.string.verifyurl));
             String csrftoken = UUID.randomUUID().toString();
             String newcsrftoken = csrftoken.replaceAll("-", ""); // remove all hyphens
             cookiestr += newcsrftoken;

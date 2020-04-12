@@ -9,10 +9,12 @@
         android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/testyardlogo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
@@ -27,8 +29,7 @@
         </activity>
         <activity
             android:name="xpresstech.testyard.MainActivity"
-            android:label="@string/app_name"
-            android:parentActivityName="xpresstech.testyard.SplashScreen" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="xpresstech.testyard.MAINACTIVITY" />
 

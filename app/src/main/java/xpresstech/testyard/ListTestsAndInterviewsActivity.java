@@ -1,37 +1,58 @@
 package xpresstech.testyard;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.security.KeyStore;
+import java.security.SecureRandom;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManagerFactory;
 
-public class ListTestsAndInterviewsActivity extends ListActivity {
+
+public class ListTestsAndInterviewsActivity extends Activity {
 
     public static String response = "";
     private ProgressDialog progressMessage;
+    private Context context = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +75,9 @@ public class ListTestsAndInterviewsActivity extends ListActivity {
         catch (Exception e) {
             e.printStackTrace();
         }
+
         try {
-            //Log.d("RESPONSE 1 ======", response);
+            System.out.println("RESPONSE 1 ======" + response);
             JSONObject jsonobj = new JSONObject(response);
             JSONObject asCandidate = new JSONObject();
             asCandidate = jsonobj.getJSONObject("asCandidate");
@@ -94,8 +116,25 @@ public class ListTestsAndInterviewsActivity extends ListActivity {
             List asEvaluatorList = new ArrayList();
             List asInterviewCandidateList = new ArrayList();
             List asInterviewerList = new ArrayList();
-            String asCandidateListStr = "\n\nAs Candidate:\n\n";
-            List allNodes = new ArrayList();
+
+            // Inflate the associated view
+            setContentView(R.layout.content_list_tests_and_interviews);
+            LinearLayout mainList =  (LinearLayout)findViewById(R.id.linlayout);
+            Button backbuttontop = new Button(this);
+            backbuttontop.setText("Back To Activity List");
+            backbuttontop.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    backToMainMenu(v);
+                }
+            });
+            mainList.addView(backbuttontop);
+            String asCandidateListHeaderStr = "\n\n-------------------------------\nAs Candidate:\n--------------------------------\n\n";
+            TextView acnd_txt_header = new TextView(this);
+            acnd_txt_header.setText(asCandidateListHeaderStr);
+            acnd_txt_header.setTypeface(null, Typeface.BOLD_ITALIC);
+            mainList.addView(acnd_txt_header);
+            TextView acnd_txt = null;
+            String asCandidateListStr = "";
             for(int i=0;i < candidatekeys.length(); i++){
                 String testname = candidatekeys.getString(i);
                 JSONArray attribs = asCandidate.getJSONArray(testname);
@@ -103,86 +142,113 @@ public class ListTestsAndInterviewsActivity extends ListActivity {
                 String outcome = attribs.getString(1);
                 String testdate = attribs.getString(2);
                 String testtopic = attribs.getString(3);
-                HashMap map = new HashMap();
-                map.put(0, testname);
-                map.put(1, testscore);
-                map.put(2, outcome);
-                map.put(3, testdate);
-                map.put(4, testtopic);
-                asCandidateList.add(map);
-                asCandidateListStr += "Test Name: " + testname + "\n";
+                acnd_txt = new TextView(this);
+                asCandidateListStr = "";
+                asCandidateListStr += "\nTest Name: " + testname + "\n";
                 asCandidateListStr += "Test Score: " + testscore + "\n";
                 asCandidateListStr += "Outcome: " + outcome + "\n";
                 asCandidateListStr += "Test Date: " + testdate + "\n";
                 asCandidateListStr += "Test Topic: " + testtopic + "\n";
-                asCandidateListStr += "\n\n";
+                asCandidateListStr += "\n________________________________\n\n";
+                acnd_txt.setText(asCandidateListStr);
+                mainList.addView(acnd_txt);
             }
-            allNodes.add(asCandidateListStr);
-            String asCreatorListStr = "\n\nAs Creator:\n\n";
+            String asCreatorListHeaderStr = "\n\n-------------------------------\nAs Creator:\n--------------------------------\n\n";
+            final TextView acrt_txt_header = new TextView(this);
+            acrt_txt_header.setText(asCreatorListHeaderStr);
+            acrt_txt_header.setTypeface(null, Typeface.BOLD_ITALIC);
+            mainList.addView(acrt_txt_header);
+            TextView acrt_txt = null;
+            String asCreatorListStr = "";
             for(int i=0;i < creatorkeys.length(); i++){
-                String testname = creatorkeys.getString(i);
+                final String testname = creatorkeys.getString(i);
                 JSONArray attribs = asCreator.getJSONArray(testname);
                 String testtakerscount = attribs.getString(0);
                 String testtopic = attribs.getString(1);
-                HashMap map = new HashMap();
-                map.put(0, testname);
-                map.put(1, testtakerscount);
-                map.put(2, testtopic);
-                asCreatorList.add(map);
+                acrt_txt = new TextView(this);
+                asCreatorListStr = "";
                 asCreatorListStr += "Test Name: " + testname + "\n";
                 asCreatorListStr += "Test Takers Count: " + testtakerscount + "\n";
                 asCreatorListStr += "Test Topic: " + testtopic + "\n";
-                asCreatorListStr += "\n\n";
+                Button btn_addedit_challenge = new Button(this);
+                btn_addedit_challenge.setTextSize(12);
+                btn_addedit_challenge.setMaxHeight(10);
+                btn_addedit_challenge.setMaxWidth(10);
+                btn_addedit_challenge.setText("Add/Edit Challenges");
+                btn_addedit_challenge.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        addEditChallenges(testname);
+                    }
+                });
+                mainList.addView(btn_addedit_challenge);
+                asCreatorListStr += "\n________________________________\n\n";
+                acrt_txt.setText(asCreatorListStr);
+                mainList.addView(acrt_txt);
             }
-            allNodes.add(asCreatorListStr);
-            String asEvaluatorListStr = "\n\nAs Evaluator: \n\n";
+            String asEvaluatorListHeaderStr = "\n\n-------------------------------\nAs Evaluator: \n--------------------------------\n\n";
+            final TextView aevl_txt_header = new TextView(this);
+            aevl_txt_header.setText(asEvaluatorListHeaderStr);
+            aevl_txt_header.setTypeface(null, Typeface.BOLD_ITALIC);
+            mainList.addView(aevl_txt_header);
+            TextView aevl_txt = null;
+            String asEvaluatorListStr = "";
             for(int i=0;i < evaluatorkeys.length(); i++){
                 String testname = evaluatorkeys.getString(i);
                 JSONArray attribs = asEvaluator.getJSONArray(testname);
                 String testtopic = attribs.getString(0);
-                HashMap map = new HashMap();
-                map.put(0, testname);
-                map.put(1, testtopic);
-                asEvaluatorList.add(map);
+                aevl_txt = new TextView(this);
+                asEvaluatorListStr = "";
                 asEvaluatorListStr += "Test Name: " + testname + "\n";
                 asEvaluatorListStr += "Test Topic: " + testtopic + "\n";
-                asEvaluatorListStr += "\n\n";
+                asEvaluatorListStr += "\n________________________________\n\n";
+                aevl_txt.setText(asEvaluatorListStr);
+                mainList.addView(aevl_txt);
             }
-            allNodes.add(asEvaluatorListStr);
-            String asInterviewCandidateListStr = "\n\nAs Interview Candidate: \n\n";
+            String asInterviewCandidateListHeaderStr = "\n\n-------------------------------\nAs Interview Candidate: \n--------------------------------\n\n";
+            final TextView aicnd_txt_header = new TextView(this);
+            aicnd_txt_header.setText(asInterviewCandidateListHeaderStr);
+            aicnd_txt_header.setTypeface(null, Typeface.BOLD_ITALIC);
+            mainList.addView(aicnd_txt_header);
+            String asInterviewCandidateListStr = "";
             for(int i=0;i < interviewcandidatekeys.length(); i++){
                 String interviewname = interviewcandidatekeys.getString(i);
                 JSONArray attribs = asInterviewCandidates.getJSONArray(interviewname);
                 String interviewtopic = attribs.getString(0);
-                HashMap map = new HashMap();
-                map.put(0, interviewname);
-                map.put(1, interviewtopic);
-                asInterviewCandidateList.add(map);
+                TextView icnd_txt = new TextView(this);
+                asInterviewCandidateListStr = "";
                 asInterviewCandidateListStr += "Interview Name: " + interviewname + "\n";
                 asInterviewCandidateListStr += "Interview Topic: " + interviewtopic + "\n";
-                asInterviewCandidateListStr += "\n\n";
+                asInterviewCandidateListStr += "\n________________________________\n\n";
+                icnd_txt.setText(asInterviewCandidateListStr);
+                mainList.addView(icnd_txt);
             }
-            allNodes.add(asInterviewCandidateListStr);
-            String asInterviewerListStr = "\n\nAs Interviewer: \n\n";
+            String asInterviewerListHeaderStr = "\n\n-------------------------------\nAs Interviewer: \n--------------------------------\n\n";
+            final TextView aicrt_txt_header = new TextView(this);
+            aicrt_txt_header.setText(asInterviewerListHeaderStr);
+            aicrt_txt_header.setTypeface(null, Typeface.BOLD_ITALIC);
+            mainList.addView(aicrt_txt_header);
+            String asInterviewerListStr = "";
             for(int i=0;i < interviewerkeys.length(); i++){
                 String interviewname = interviewerkeys.getString(i);
                 JSONArray attribs = asInterviewer.getJSONArray(interviewname);
                 String interviewtopic = attribs.getString(0);
-                HashMap map = new HashMap();
-                map.put(0, interviewname);
-                map.put(1, interviewtopic);
-                asInterviewerList.add(map);
+                TextView icrt_txt = new TextView(this);
+                asInterviewerListStr = "";
                 asInterviewerListStr += "Interview Name: " + interviewname + "\n";
                 asInterviewerListStr += "Interview Topic: " + interviewtopic + "\n";
-                asInterviewerListStr += "\n\n";
+                asInterviewerListStr += "\n________________________________\n\n";
+                icrt_txt.setText(asInterviewerListStr);
+                mainList.addView(icrt_txt);
             }
-            allNodes.add(asInterviewerListStr);
-            setContentView(R.layout.activity_list_tests_and_interviews);
-            ListView mainlistview =  (ListView) findViewById(android.R.id.list);
-            HashMap hashobj = (HashMap)asCandidateList.get(0);
-            ArrayAdapter<String> listadapter = new ArrayAdapter<String>(ListTestsAndInterviewsActivity.this, R.layout.content_list_tests_and_interviews, new String[]{(String)allNodes.get(0), (String)allNodes.get(1) , (String)allNodes.get(2), (String)allNodes.get(3), (String)allNodes.get(4)});
-            //SimpleAdapter tcadapter = new SimpleAdapter(ListTestsAndInterviewsActivity.this, asCandidateList, R.layout.content_list_tests_and_interviews, new String[]{"testname", "testscore", "outcome", "testdate", "testtopic"}, new int[]{R.id.testname, R.id.testscore, R.id.outcome, R.id.testdate, R.id.testtopic});
-            mainlistview.setAdapter(listadapter);
+            //System.out.println("+++++++++++++++++++++++++++++++ HERE 5 ++++++++++++++++++++++++++++" + mainList);
+            Button backbuttonbottom = new Button(this);
+            backbuttonbottom.setText("Back To Activity List");
+            backbuttonbottom.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    backToMainMenu(v);
+                }
+            });
+            mainList.addView(backbuttonbottom);
         }
         catch(JSONException e) {
             e.printStackTrace();
@@ -198,30 +264,94 @@ public class ListTestsAndInterviewsActivity extends ListActivity {
         String username = pref.getString("username", "");
         String sessionid = pref.getString("session_id", "");
         String usertype = pref.getString("usertype", "");
+        SSLContext context = null;
+        ///////////////////////////////// The following part handles self signed certificates. /////////////////////////////
+        // Start of code to evade "java.security.cert.CertPathValidatorException"
+        CertificateFactory cf = null;
+        InputStream caInput = null;
+        try {
+            cf = CertificateFactory.getInstance("X.509");
+            caInput = new BufferedInputStream(new FileInputStream("/sdcard/sware/testyard.crt"));
+            //caInput = new BufferedInputStream(new FileInputStream("/home/supriyo/work/testyard/testyard/skillstest/etc_conf/testyard.crt"));
+            //System.out.println("========================== caInput = " + caInput + "====================================");
+        }
+        catch(Exception e){
+            System.out.println("Couldn't create certificate factory: " + e.getMessage());
+            return null;
+        }
+        Certificate ca = null;
+        try {
+            ca = cf.generateCertificate(caInput);
+            //System.out.println("******************************ca=" + ((X509Certificate) ca).getSubjectDN());
+        }
+        catch(Exception e) {
+            //caInput.close();
+            System.out.println("========================== Incurred exception - " + e.getMessage() + " ===============================");
+        }
+        // Create a KeyStore containing our trusted CAs
+        String keyStoreType = KeyStore.getDefaultType();
+        KeyStore keyStore = null;
+        try {
+            keyStore = KeyStore.getInstance(keyStoreType);
+            keyStore.load(null, null);
+            keyStore.setCertificateEntry("testyard", ca);
+        }
+        catch(Exception e){
+            System.out.println("Choking here.... after setCertificateEntry: " + e.getMessage());
+        }
+        String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+        try {
+            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+            tmf.init(keyStore);
+            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() { // Handle hostname verifier to return true irrespective of whether the host is verifiable or not.
+                @Override
+                public boolean verify(String s, SSLSession sslSession) {
+                    return true;
+                }
+
+            });
+            // Create an SSLContext that uses our TrustManager
+            context = SSLContext.getInstance("TLS");
+            context.init(null, tmf.getTrustManagers(), new SecureRandom());
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+            ////////////////////////////////// Handling of self signed certificate ends here //////////////////////////////////////
+            // End of "java.security.cert.CertPathValidatorException" evading code.
         try {
             URL url;
-            final String listTestsInterviewsUrl = getString(R.string.list_tests_interviews_url);
+                final String listTestsInterviewsUrl = getString(R.string.list_tests_interviews_url);
             url = new URL(listTestsInterviewsUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+            conn.setSSLSocketFactory(context.getSocketFactory());
             String csrftoken = UUID.randomUUID().toString();
             String newcsrftoken = csrftoken.replaceAll("-", ""); // remove all hyphens
-            String cookiestr = "sessioncode=" + sessionid + "; usertype=" + usertype + "; csrftoken=" + newcsrftoken;
+            String cookiestr = "sessioncode=" + sessionid + "; usertype=" + usertype + "; csrftoken=" + newcsrftoken + ";";
+            //System.out.println("\n======================================\nCOOKIESTR = " + cookiestr + "\n===============================================\n");
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             conn.setRequestProperty("Accept", "*/*");
             conn.setRequestProperty("Cookie", cookiestr);
+            conn.setRequestProperty("X-CSRFToken", newcsrftoken);
+            conn.setRequestProperty("Referer", getString(R.string.verifyurl));
             conn.setDoOutput(true);
             conn.setDoInput(true);
             final HashMap postDataParams = new HashMap<String, String>();
             postDataParams.put("username", username);
             postDataParams.put("sessionid", sessionid);
             postDataParams.put("csrfmiddlewaretoken", newcsrftoken);
+            //System.out.println("*************************** CSRF TOKEN *******************************" + newcsrftoken);
             String postDataParamsString = getPostDataString(postDataParams);
+            postDataParamsString = postDataParamsString.replace("%24", "$");
+            postDataParamsString = postDataParamsString.replace("%2F", "/");
+            System.out.println("\n++++++++++++++++++++++++++\n" + postDataParamsString + "\n++++++++++++++++++++++++\n");
             OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
             writer.write(postDataParamsString);
             writer.flush();
             writer.close();
             int responseCode=conn.getResponseCode();
+            System.out.println("*************************** Response Code *******************************" + responseCode );
             if (responseCode == HttpURLConnection.HTTP_OK){
                 String line;
                 BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -232,12 +362,33 @@ public class ListTestsAndInterviewsActivity extends ListActivity {
             else {
                 response="";
             }
+            System.out.println("*************************** RESPONSE *******************************" + response);
             Log.d("RESPONSE", response);
         }
         catch (Exception e) {
             e.printStackTrace();
         }
         return(response);
+    }
+
+
+    public void addEditChallenges(String testname){
+        Toast.makeText(getApplicationContext(), "Adding Editing Challenges", Toast.LENGTH_SHORT).show();
+        setContentView(R.layout.content_challenge_creation);
+        SharedPreferences apppref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        SharedPreferences.Editor editor = apppref.edit();
+        String sessionId = apppref.getString("session_id", "");
+        Intent intent = new Intent(this, ChallengeCreationActivity.class);
+        if(sessionId == "") {
+            intent = new Intent(this, LoginScreenActivity.class);
+        }
+        EditText editText = (EditText) findViewById(R.id.add_challenges);
+        //System.out.println("editText 1 ======" + editText);
+        editText.setRawInputType(Configuration.KEYBOARD_QWERTY);
+        String message = editText.getText().toString();
+        finish();
+        startActivity(intent);
+        //return(message);
     }
 
 
@@ -255,6 +406,7 @@ public class ListTestsAndInterviewsActivity extends ListActivity {
         }
         return (result.toString());
     }
+
 
     public void backToMainMenu(View view){
         SharedPreferences apppref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode

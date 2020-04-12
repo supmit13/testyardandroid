@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <TextView
-        android:id="@+id/testname"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/linlayout"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:paddingLeft="6dip"
-        android:paddingTop="6dip"
-        android:textColor="#A4C739"
-        android:textSize="17dip"
-        android:textStyle="bold"
+        android:layout_height="fill_parent"
+        android:background="#7093c7"
         xmlns:android="http://schemas.android.com/apk/res/android">
-    </TextView>
+
+    </LinearLayout>
+</ScrollView>

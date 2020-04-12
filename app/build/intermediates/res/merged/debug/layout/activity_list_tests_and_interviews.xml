@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView
+    android:id="@+id/testname"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#7093c7">
+    android:background="#7093c7"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_back"
-        android:onClick="backToMainMenu" />
-
-    <ListView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@android:id/list">
-
-    </ListView>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_back"
-        android:onClick="backToMainMenu" />
-
-</LinearLayout>
+</TextView>

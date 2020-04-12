@@ -28,6 +28,10 @@
         "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_list_selector_holo_light.xml"
     },
     {
+        "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/testyardlogo.png",
+        "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/src/main/res/drawable/testyardlogo.png"
+    },
+    {
         "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_dark.xml",
         "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_list_selector_holo_dark.xml"
     },
@@ -60,6 +64,14 @@
         "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_ratingbar_small_material.xml"
     },
     {
+        "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/ico_mic.png",
+        "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/src/main/res/drawable/ico_mic.png"
+    },
+    {
+        "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_dark.xml",
+        "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_dialog_material_background_dark.xml"
+    },
+    {
         "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/abc_btn_borderless_material.xml",
         "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_btn_borderless_material.xml"
     },
@@ -72,32 +84,16 @@
         "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_textfield_search_material.xml"
     },
     {
-        "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/design_fab_background.xml",
-        "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/design/23.2.0/res/drawable/design_fab_background.xml"
-    },
-    {
-        "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/abc_btn_colored_material.xml",
-        "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_btn_colored_material.xml"
-    },
-    {
-        "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/testyardlogo.jpeg",
-        "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/src/main/res/drawable/testyardlogo.jpeg"
-    },
-    {
-        "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_light.xml",
-        "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_dialog_material_background_light.xml"
-    },
-    {
-        "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_dark.xml",
-        "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_dialog_material_background_dark.xml"
-    },
-    {
         "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/abc_btn_radio_material.xml",
         "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_btn_radio_material.xml"
     },
     {
         "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_light.xml",
         "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/design_fab_background.xml",
+        "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/design/23.2.0/res/drawable/design_fab_background.xml"
     },
     {
         "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/activate_button.gif",
@@ -108,12 +104,16 @@
         "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_item_background_holo_dark.xml"
     },
     {
+        "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/abc_btn_colored_material.xml",
+        "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_btn_colored_material.xml"
+    },
+    {
         "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/abc_cab_background_top_material.xml",
         "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_cab_background_top_material.xml"
     },
     {
-        "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/abc_seekbar_track_material.xml",
-        "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_seekbar_track_material.xml"
+        "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background_light.xml",
+        "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_dialog_material_background_light.xml"
     },
     {
         "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/abc_edit_text_material.xml",
@@ -122,5 +122,13 @@
     {
         "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/abc_spinner_textfield_background_material.xml",
         "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_spinner_textfield_background_material.xml"
+    },
+    {
+        "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/abc_seekbar_track_material.xml",
+        "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_seekbar_track_material.xml"
+    },
+    {
+        "merged": "/home/supmit/work/testyard/experiments/testyardandroid/app/build/intermediates/res/merged/debug/drawable/testyardlogo2.gif",
+        "source": "/home/supmit/work/testyard/experiments/testyardandroid/app/src/main/res/drawable/testyardlogo2.gif"
     }
 ]

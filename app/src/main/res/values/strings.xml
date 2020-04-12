@@ -14,6 +14,7 @@
     <string name="button_conduct_interview">Conduct an Interview</string>
     <string name="button_schedule_interview">Schedule an Interview</string>
     <string name="button_back">Back To Main Menu</string>
+    <string name="button_addedit_challenges">Add/Edit Challenges</string>
     <string name="title_activity_login_screen">LoginScreen</string>
     <string name="title_activity_test_creation">TestCreationActivity</string>
     <string name="list_tests_by_creator">ListTestsByCreatorActivity</string>
@@ -26,21 +27,21 @@
     <string name="title_activity_conduct_interview">ConductInterviewActivity</string>
     <string name="title_activity_attend_interview">AttendInterviewActivity</string>
     <string name="title_activity_schedule_interview">ScheduleInterviewActivity</string>
-    <string name="verifyurl">https://192.168.1.3/skillstest/mobile/verifycreds/</string>
-    <string name="list_tests_interviews_url">https://192.168.1.3/skillstest/mobile/listtestsinterviews/</string>
-    <string name="test_creation_url">https://192.168.1.3/skillstest/mobile/tests/create/</string>
-    <string name="upload_server_url">https://192.168.1.3/skillstest/mobile/tests/uploadfile/</string>
-    <string name="add_challenge_url">https://192.168.1.3/skillstest/mobile/tests/addchallenge/</string>
-    <string name="schedule_test_url">https://192.168.1.3/skillstest/mobile/tests/setschedule/</string>
-    <string name="list_tests_by_creator_url">https://192.168.1.3/skillstest/mobile/tests/showcreatortests/</string>nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
-    <string name="allow_multimedia">Allow Multimedia in Challenge Statementnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnns</string>
+    <string name="verifyurl">https://192.168.0.103/skillstest/mobile/verifycreds/</string>
+    <string name="list_tests_interviews_url">https://192.168.0.103/skillstest/mobile/listtestsinterviews/</string>
+    <string name="test_creation_url">https://192.168.0.103/skillstest/mobile/tests/create/</string>
+    <string name="upload_server_url">https://192.168.0.103/skillstest/mobile/tests/uploadfile/</string>
+    <string name="add_challenge_url">https://192.168.0.103/skillstest/mobile/tests/addchallenge/</string>
+    <string name="schedule_test_url">https://192.168.0.103/skillstest/mobile/tests/setschedule/</string>
+    <string name="list_tests_by_creator_url">https://192.168.0.103/skillstest/mobile/tests/showcreatortests/</string>
+    <string name="allow_multimedia">Allow Multimedia in Challenge Statements</string>
     <string name="random_sequenced">Challenges Should be Randomly Sequenced</string>
     <string name="multiple_attempts">Allow Multiple Attempts By Candidates</string>
     <string name="create_test">Create Test</string>
     <string name="close_app">Close Application</string>
-    <string name="add_challenges">Add Challenges</string>nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+    <string name="add_challenges">Add Challenges</string>
     <string name="ext_resource_text">External resource URL (if any) referred by this challenge/question:</string>
- nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn   <strinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnng name="response_lines_text">Maximum Number of Lines in Response:</strinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnng>
+    <string name="response_lines_text">Maximum Number of Lines in Response:</string>
     <string name="challenge_score">*Score for this Challenge/Question:</string>
     <string name="negative_score_text">Enter score to deduct on errant response:</string>
     <string name="compulsory_challenge_text">Is it compulsory for the candidate to respond?</string>
@@ -51,7 +52,7 @@
     <string name="close_button">Close</string>
     <string name="title_activity_challenge_creation">ChallengeCreationActivity</string>
     <string name="title_activity_test_creator">ListTestsByCreatorActivity</string>
-    <string name="filb_response_caption_text">Enter the correct response</string>
+    <string name="filb_response_caption_text">Enter <t>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </t>he correct response</string>
     <string name="multiple_chc_oneormore_text">Can there be more than one correct answer?</string>
     <string name="multiple_chc_options_text">Please enter the options you want to be made available for this challenge [max 8]</string>
     <string-array name="challenge_qualities">
@@ -60,10 +61,15 @@
         <item>Proficient</item>
     </string-array>
     <string name="schedule_test_button">Schedule this test</string>
+    <string name="challenge_note">challenge_note</string>
+    <string name="upload_media_file">Upload Media File</string>
     <string name="cancel_test_button">Cancel Schedule</string>
     <string name="schedule_test_divider">----------------------------------------</string>
     <string name="schedule_test_email_ids">Enter Email Ids here</string>
     <string name="go_schedule">Send Schedule</string>
     <string name="schedule_date_hint">yyyy-mm-dd</string>
+    <string name="speech_prompt">Add Challenge!</string>
+    <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
+    <string name="tap_on_mic">Tap on mic to record challenge statement</string>
 </resources>
 

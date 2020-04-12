@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 
 public class CreateTestActivity extends AppCompatActivity {
 
+    public static String response;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -250,6 +250,7 @@
     <item name="action_bar_spinner" type="id"/>
     <item name="action_menu_divider" type="id"/>
     <item name="action_menu_presenter" type="id"/>
+    <item name="add_challenges" type="id"/>
     <item name="challenge_type" type="id"/>
     <item name="email_view" type="id"/>
     <item name="filb_correct_resp_field_id" type="id"/>
@@ -305,12 +306,13 @@
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="action_settings">Settings</string>
-    <string name="add_challenge_url">http://192.168.1.4:8000/skillstest/mobile/tests/addchallenge/</string>
+    <string name="add_challenge_url">https://192.168.0.103/skillstest/mobile/tests/addchallenge/</string>
     <string name="add_challenges">Add Challenges</string>
     <string name="allow_multimedia">Allow Multimedia in Challenge Statements</string>
     <string name="app_name">TestYard App</string>
     <string name="appbar_scrolling_view_behavior"/>
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
+    <string name="button_addedit_challenges">Add/Edit Challenges</string>
     <string name="button_attend_interview">Attend an Interview</string>
     <string name="button_back">Back To Main Menu</string>
     <string name="button_conduct_interview">Conduct an Interview</string>
@@ -321,7 +323,7 @@
     <string name="button_send">Send</string>
     <string name="button_take_test">Take a Test</string>
     <string name="cancel_test_button">Cancel Schedule</string>
-    <string name="challenge_note">Note: To write a mathematical formula with special characters such as α or β, please open the following link in another browser window: http://math.typeit.org/ . Write the formula in the editable text area on that page and copy / paste it here on the above text area.</string>
+    <string name="challenge_note">challenge_note</string>
     <string name="challenge_quality_text">Quality of the Challenge:</string>
     <string name="challenge_score">*Score for this Challenge/Question:</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
@@ -332,12 +334,12 @@
     <string name="do_login">Login</string>
     <string name="edit_testname">Search my Interviews/Tests by name</string>
     <string name="ext_resource_text">External resource URL (if any) referred by this challenge/question:</string>
-    <string name="filb_response_caption_text">Enter the correct response</string>
+    <string name="filb_response_caption_text">Enter <t>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </t>he correct response</string>
     <string name="go_schedule">Send Schedule</string>
     <string name="layout_behavior"/>
     <string name="list_tests_by_creator">ListTestsByCreatorActivity</string>
-    <string name="list_tests_by_creator_url">http://192.168.1.4:8000/skillstest/mobile/tests/showcreatortests/</string>
-    <string name="list_tests_interviews_url">http://192.168.1.4:8000/skillstest/mobile/listtestsinterviews/</string>
+    <string name="list_tests_by_creator_url">https://192.168.0.103/skillstest/mobile/tests/showcreatortests/</string>
+    <string name="list_tests_interviews_url">https://192.168.0.103/skillstest/mobile/listtestsinterviews/</string>
     <string name="max_time_limit">Maximum Time Limit (in seconds)</string>
     <string name="multiple_attempts">Allow Multiple Attempts By Candidates</string>
     <string name="multiple_chc_oneormore_text">Can there be more than one correct answer?</string>
@@ -352,9 +354,12 @@
     <string name="schedule_test_button">Schedule this test</string>
     <string name="schedule_test_divider">----------------------------------------</string>
     <string name="schedule_test_email_ids">Enter Email Ids here</string>
-    <string name="schedule_test_url">http://192.168.1.4:8000/skillstest/mobile/tests/setschedule/</string>
+    <string name="schedule_test_url">https://192.168.0.103/skillstest/mobile/tests/setschedule/</string>
+    <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
+    <string name="speech_prompt">Add Challenge!</string>
     <string name="status_bar_notification_info_overflow">999+</string>
-    <string name="test_creation_url">http://192.168.1.4:8000/skillstest/mobile/tests/create/</string>
+    <string name="tap_on_mic">Tap on mic to record challenge statement</string>
+    <string name="test_creation_url">https://192.168.0.103/skillstest/mobile/tests/create/</string>
     <string name="title_activity_attend_interview">AttendInterviewActivity</string>
     <string name="title_activity_challenge_creation">ChallengeCreationActivity</string>
     <string name="title_activity_conduct_interview">ConductInterviewActivity</string>
@@ -365,10 +370,10 @@
     <string name="title_activity_take_test">TakeTestActivity</string>
     <string name="title_activity_test_creation">TestCreationActivity</string>
     <string name="title_activity_test_creator">ListTestsByCreatorActivity</string>
-    <string name="upload_media_file">Upload Media File:</string>
-    <string name="upload_server_url">http://192.168.1.4:8000/skillstest/mobile/tests/uploadfile/</string>
+    <string name="upload_media_file">Upload Media File</string>
+    <string name="upload_server_url">https://192.168.0.103/skillstest/mobile/tests/uploadfile/</string>
     <string name="username">Username</string>
-    <string name="verifyurl">http://192.168.1.4:8000/skillstest/mobile/verifycreds/</string>
+    <string name="verifyurl">https://192.168.0.103/skillstest/mobile/verifycreds/</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
